@@ -16,28 +16,46 @@
       :loading="false" />
     <Trend
       color="red"
-      title="Income"
+      title="Expense"
       :amount="4000"
-      :last-amount="3000"
+      :last-amount="5000"
       :loading="false" />
     <Trend
       color="green"
-      title="Income"
+      title="Investments"
       :amount="4000"
       :last-amount="3000"
       :loading="false" />
     <Trend
       color="red"
-      title="Income"
+      title="Saving"
       :amount="4000"
-      :last-amount="3000"
-      :loading="true" />
+      :last-amount="4100"
+      :loading="false" />
+  </section>
+
+  <section>
+    <Transaction
+      v-for="transaction in transactions"
+      :key="transaction.id"
+      :transaction="transaction" />
   </section>
 </template>
 
-<script lang="ts" setup>
-import { transactionViewOptions } from '~/constants';
-const selectedView = ref(transactionViewOptions[1]);
+<script lang="js" setup>
+import { transactionViewOptions } from '~/constants'
+const selectedView = ref(transactionViewOptions[1])
+
+const transactions = ref([]);
+
+const supabase = useSupabaseClient();
+const { data, pending } = await useAsyncData('transactions', async () => {
+  const {data, error } = await supabase.from('transactions').select()
+  if (error) return []
+  return data
+});
+
+transactions.value = data.value;
 </script>
 
 <style></style>

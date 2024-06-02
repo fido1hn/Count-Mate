@@ -15,6 +15,7 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "@nuxthq/ui": "^2.7.0"
+    "@nuxthq/ui": "^2.7.0",
+    "@nuxtjs/supabase": "^1.2.2"
   }
 }
