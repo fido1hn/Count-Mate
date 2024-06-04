@@ -113,7 +113,7 @@ const supabase = useSupabaseClient();
 const toast = useToast();
 
 const save = async () => {
-  if (form.value.errors.length) return;
+  // if (form.value.errors.length) return;
 
   isLoading.value = true;
   try {
@@ -128,12 +128,16 @@ const save = async () => {
       });
       isOpen.value = false;
       emit('saved');
+      return;
     }
+
+    throw error;
   } catch (error) {
     toast.add({
       title: 'Transaction not saved',
       description: error.message,
       icon: 'i-heroicons-exclamation-circle',
+      color: 'red',
     });
   } finally {
     isLoading.value = false;
@@ -154,7 +158,7 @@ const state = ref({
 
 const resetForm = () => {
   Object.assign(state.value, initialState);
-  form.value.clear();
+  // form.value.clear();
 };
 
 const isOpen = computed({
