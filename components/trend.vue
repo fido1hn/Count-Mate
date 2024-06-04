@@ -41,7 +41,7 @@ const icon = computed(() =>
 const {currency} = useCurrency(props.amount)
 
 const percentageTrend = computed(() => {
-  if (props.amount === 0 || props.lastAmount === 0) return '♾️%';
+  if (props.amount === 0 || props.lastAmount === 0) return '♾️ %';
   const bigger = Math.max(props.amount, props.lastAmount);
   const lower = Math.min(props.amount, props.lastAmount);
   const ratio = ((bigger - lower) / lower) * 100;

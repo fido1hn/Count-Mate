@@ -43,11 +43,13 @@
       </div>
     </div>
     <div>
+      <TransactionModal v-model="isOpen" />
       <UButton
         icon="i-heroicons-plus-circle"
         color="white"
         variant="solid"
-        label="Add" />
+        label="Add"
+        @click="isOpen = true" />
     </div>
   </section>
 
@@ -70,11 +72,13 @@
 </template>
 
 <script lang="js" setup>
+import TransactionModal from '~/components/transaction-modal.vue';
 import { transactionViewOptions } from '~/constants'
 const supabase = useSupabaseClient();
 const selectedView = ref(transactionViewOptions[1])
 const transactions = ref([]);
 const isLoading = ref(false)
+const isOpen = ref(false)
 
 const income = computed(()=> transactions.value.filter( t => t.type === 'Income'))
 const expense = computed(()=> transactions.value.filter( t => t.type === 'Expense'))
