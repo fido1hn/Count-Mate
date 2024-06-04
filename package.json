@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "seed": "bun seed.mjs"
   },
   "dependencies": {
     "nuxt": "^3.11.2",
@@ -15,7 +16,9 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@nuxthq/ui": "^2.7.0",
-    "@nuxtjs/supabase": "^1.2.2"
+    "@nuxtjs/supabase": "^1.2.2",
+    "zod": "^3.23.8"
   }
 }
