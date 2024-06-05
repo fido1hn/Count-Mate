@@ -44,9 +44,10 @@ export const useFetchTransactions = (period) => {
 
   const refresh = async () => (transactions.value = await fetchTransactions());
 
-  watch(period, async () => {
-    transactions.value = await refresh();
-  });
+  // Bug: Maximum recursive updates exceeded.
+  // watch(period, async () => {
+  //   transactions.value = await refresh();
+  // });
 
   const transactionsGroupedByDate = computed(() => {
     let grouped = {};

@@ -9,6 +9,12 @@
   </header>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="js" setup>
+const user = useSupabaseUser()
 
-<style></style>
+watch(user, (user)=>{
+  if (user) {
+    console.log('Signed In!')
+  }
+}, {immediate: true})
+</script>

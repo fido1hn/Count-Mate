@@ -5,7 +5,7 @@
 
       <UForm :state="state" :schema="schema" ref="form" @submit.prevent="save">
         <UFormGroup
-          required="true"
+          :required="true"
           label="Transaction Type"
           name="type"
           class="mb-4">
@@ -24,7 +24,7 @@
 
         <UFormGroup
           label="Transaction date"
-          required="true"
+          :required="true"
           name="created_at"
           class="mb-4">
           <UInput
@@ -42,7 +42,7 @@
         </UFormGroup>
 
         <UFormGroup
-          required="true"
+          :required="true"
           label="Category"
           name="category"
           class="mb-4"
