@@ -8,13 +8,3 @@
     </div>
   </header>
 </template>
-
-<script lang="js" setup>
-const user = useSupabaseUser()
-
-watch(user, (user)=>{
-  if (user) {
-    console.log('Signed In!')
-  }
-}, {immediate: true})
-</script>
