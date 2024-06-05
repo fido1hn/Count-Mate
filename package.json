@@ -19,6 +19,7 @@
     "@faker-js/faker": "^8.4.1",
     "@nuxthq/ui": "^2.7.0",
     "@nuxtjs/supabase": "^1.2.2",
+    "date-fns": "^3.6.0",
     "zod": "^3.23.8"
   }
 }

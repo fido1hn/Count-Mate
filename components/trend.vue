@@ -30,6 +30,8 @@ const props = defineProps({
   loading: Boolean,
 });
 
+const { amount } = toRefs(props)
+
 const trendingUp = computed(() => props.amount >= props.lastAmount);
 
 const icon = computed(() =>
@@ -38,7 +40,7 @@ const icon = computed(() =>
     : 'i-heroicons-arrow-trending-down'
 );
 
-const {currency} = useCurrency(props.amount)
+const {currency} = useCurrency(amount)
 
 const percentageTrend = computed(() => {
   if (props.amount === 0 || props.lastAmount === 0) return '♾️ %';
