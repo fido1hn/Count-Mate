@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-6 gap-8">
     <UVerticalNavigation :links="links" class="col-span-2" />
-    <div class="cols-span-4">
+    <div class="col-span-4">
       <NuxtPage />
     </div>
   </div>
