@@ -5,6 +5,8 @@ export default defineNuxtConfig({
   supabase: {
     redirect: true,
   },
+
+  // runtime config
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL,
