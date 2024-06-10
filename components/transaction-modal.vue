@@ -1,7 +1,9 @@
 <template>
   <UModal v-model="isOpen">
     <UCard>
-      <template #header> Add Transaction </template>
+      <template #header>
+        {{ isEditing ? 'Edit' : 'Add' }} Transaction
+      </template>
 
       <UForm :state="state" :schema="schema" ref="form" @submit.prevent="save">
         <UFormGroup
@@ -10,12 +12,13 @@
           name="type"
           class="mb-4">
           <USelect
+            :disabled="isEditing"
             :options="transactionTypes"
             placeholder="Select the transaction type"
             v-model="state.type" />
         </UFormGroup>
 
-        <UFormGroup label="Amount" required="true" name="amount" class="mb-4">
+        <UFormGroup label="Amount" :required="true" name="amount" class="mb-4">
           <UInput
             type="number"
             placeholder="Amount"
@@ -70,7 +73,13 @@ import { z } from 'zod';
 
 const props = defineProps({
   modelValue: Boolean,
+  transaction: {
+    type: Object,
+    required: false,
+  },
 });
+
+const isEditing = computed(() => !!props.transaction);
 
 const emit = defineEmits(['update:modelValue', 'saved']);
 
@@ -117,9 +126,10 @@ const save = async () => {
 
   isLoading.value = true;
   try {
-    const { error } = await supabase
-      .from('transactions')
-      .upsert({ ...state.value });
+    const { error } = await supabase.from('transactions').upsert({
+      ...state.value,
+      id: props.transaction?.id,
+    });
 
     if (!error) {
       toastSuccess({
@@ -141,13 +151,21 @@ const save = async () => {
   }
 };
 
-const initialState = {
-  type: undefined,
-  amount: 0,
-  created_at: undefined,
-  description: undefined,
-  category: undefined,
-};
+const initialState = isEditing.value
+  ? {
+      type: props.transaction.type,
+      amount: props.transaction.amount,
+      created_at: props.transaction.created_at.split('T')[0],
+      description: props.transaction.description,
+      category: props.transaction.category,
+    }
+  : {
+      type: undefined,
+      amount: 0,
+      created_at: undefined,
+      description: undefined,
+      category: undefined,
+    };
 
 const state = ref({
   ...initialState,
