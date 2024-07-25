@@ -11,6 +11,7 @@
     "seed": "bun seed.mjs"
   },
   "dependencies": {
+    "@nuxt/ui": "^2.17.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
@@ -18,7 +19,6 @@
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
     "@iconify-json/flat-color-icons": "^1.1.10",
-    "@nuxthq/ui": "^2.7.0",
     "@nuxtjs/supabase": "^1.2.2",
     "date-fns": "^3.6.0",
     "prettier": "^3.3.3",

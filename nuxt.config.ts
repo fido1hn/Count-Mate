@@ -1,10 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxthq/ui", "@nuxtjs/supabase"],
+  modules: ["@nuxtjs/supabase", "@nuxt/ui"],
+
   supabase: {
     redirect: false,
   },
+
   ui: {
     icons: ["flat-color-icons"],
   },
@@ -15,4 +17,6 @@ export default defineNuxtConfig({
       baseUrl: process.env.BASE_URL ?? "http://localhost:3000",
     },
   },
+
+  compatibilityDate: "2024-07-25",
 });
