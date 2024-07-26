@@ -16,6 +16,6 @@ body {
 }
 /* Set the background color for the entire site */
 body {
-  @apply bg-white dark:bg-gray-900;
+  @apply bg-white text-gray-800 dark:bg-gray-900;
 }
 </style>
