@@ -1,6 +1,7 @@
 <template>
   <div>
-    <slot />
+    <h1>Homepage</h1>
+    <p>Work in progress 💝</p>
   </div>
 </template>
 
