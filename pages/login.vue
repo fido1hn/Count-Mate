@@ -9,6 +9,7 @@
           {{ tabTaglines[selectedTabIndex] }}
         </p>
       </div>
+
       <div>
         <UTabs :items="items" @change="onTabChange" class="w-full">
           <template #signup="{ item }">
@@ -49,7 +50,14 @@
                 </p>
               </div>
             </div>
-            <UButton color="violet" size="lg" class="mb-3 font-semibold" block
+            <UButton
+              :loading="pending"
+              :disabled="pending"
+              @click="onSubmitSignup"
+              color="violet"
+              size="lg"
+              class="mb-3 font-semibold"
+              block
               >Get started</UButton
             >
             <UButton
@@ -66,6 +74,7 @@
               <a href="" class="text-primary font-semibold">Log in</a>
             </p>
           </template>
+
           <template #login="{ item }">
             <UFormGroup label="Email" name="email" size="lg" class="mb-4">
               <UInput
@@ -162,8 +171,32 @@ const { toastError, toastSuccess } = useAppToast();
 const supabase = useSupabaseClient();
 useRedirectIfAuthenticated();
 
-function onSubmitSignup() {
-  console.log("Submitted form:", signupForm);
+async function onSubmitSignup() {
+  pending.value = true;
+  try {
+    const { error } = await supabase.auth.signUp({
+      email: signupForm.email,
+      password: signupForm.password,
+      options: {
+        data: {
+          display_name: signupForm.name,
+        },
+      },
+    });
+    if (error) {
+      toastError({
+        title: "Error authenticating",
+        description: error.message,
+      });
+    } else {
+      toastSuccess({
+        title: "Success",
+        description: "Login successful!",
+      });
+    }
+  } finally {
+    pending.value = false;
+  }
 }
 
 async function onSubmitLogin() {

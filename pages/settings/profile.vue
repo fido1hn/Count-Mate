@@ -1,5 +1,5 @@
 <template>
-  <UForm :state="state" :schema="schema" @submit.prevent="saveProfile">
+  <UForm :state="state" :schema="schema" @submit.prevent>
     <UFormGroup class="mb-4" label="Full Name" name="name">
       <UInput v-model="state.name" />
     </UFormGroup>
@@ -9,7 +9,8 @@
       label="Email"
       :required="true"
       name="email"
-      help="You will receive a confirmation email on both the old and new addresses if you modify the email address">
+      help="You will receive a confirmation email on both the old and new addresses if you modify the email address"
+    >
       <UInput v-model="state.email" />
     </UFormGroup>
 
@@ -18,13 +19,15 @@
       color="black"
       variant="solid"
       label="Save"
+      @click="saveProfile"
       :loading="pending"
-      :disabled="pending" />
+      :disabled="pending"
+    />
   </UForm>
 </template>
 
-<script setup>
-import { z } from 'zod';
+<script lang="ts" setup>
+import { z } from "zod";
 
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
@@ -32,7 +35,7 @@ const { toastSuccess, toastError } = useAppToast();
 
 const pending = ref(false);
 const state = ref({
-  name: user.value.user_metadata?.full_name,
+  name: user.value.user_metadata.display_name,
   email: user.value.email,
 });
 
@@ -46,7 +49,7 @@ const saveProfile = async () => {
   try {
     const data = {
       data: {
-        full_name: state.value.name,
+        display_name: state.value.name,
       },
     };
 
@@ -58,12 +61,12 @@ const saveProfile = async () => {
     if (error) throw error;
 
     toastSuccess({
-      title: 'Profile updated',
-      description: 'Your profile has been updated',
+      title: "Profile updated",
+      description: "Your profile has been updated",
     });
   } catch (error) {
     toastError({
-      title: 'Error updating profile',
+      title: "Error updating profile",
       description: error.message,
     });
   } finally {
