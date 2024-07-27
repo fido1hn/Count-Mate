@@ -125,7 +125,7 @@
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: "auth",
+  layout: false,
 });
 
 const items = [
