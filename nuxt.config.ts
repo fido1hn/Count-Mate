@@ -7,10 +7,6 @@ export default defineNuxtConfig({
     redirect: true,
   },
 
-  ui: {
-    icons: ["flat-color-icons"],
-  },
-
   // runtime config
   runtimeConfig: {
     public: {

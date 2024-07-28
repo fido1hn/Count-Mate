@@ -1,6 +1,9 @@
 <template>
-  <div class="min-h-screen px-10 pt-16">
+  <div class="min-h-screen px-10 pt-10">
     <div class="mx-auto max-w-96">
+      <div class="mb-5 flex justify-center">
+        <img src="/icon.png" alt="Untitled UI logo" class="h-12 w-12" />
+      </div>
       <div class="mb-5 text-center">
         <h1 class="text-3xl font-semibold">
           {{ tabHeadings[selectedTabIndex] }}
@@ -18,7 +21,7 @@
           class="w-full"
         >
           <template id="signup" #signup="{ item }">
-            <UFormGroup label="Name" name="name" size="lg" class="mb-4 mt-6">
+            <UFormGroup label="Name" name="name" size="lg" class="mb-4 mt-4">
               <UInput v-model="signupForm.name" placeholder="Enter your name" />
             </UFormGroup>
             <UFormGroup label="Email" name="email" size="lg" class="mb-4">
