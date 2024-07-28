@@ -5,7 +5,7 @@
         <img src="/icon.png" alt="Untitled UI logo" class="h-12 w-12" />
       </div>
       <div class="mb-5 text-center">
-        <h1 class="text-3xl font-semibold">
+        <h1 class="text-2xl font-semibold md:text-3xl">
           {{ tabHeadings[selectedTabIndex] }}
         </h1>
         <p class="text-base text-gray-500">
