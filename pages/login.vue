@@ -11,8 +11,13 @@
       </div>
 
       <div>
-        <UTabs :items="items" @change="onTabChange" class="w-full">
-          <template #signup="{ item }">
+        <UTabs
+          v-model="selectedTabIndex"
+          :items="items"
+          @change="onTabChange"
+          class="w-full"
+        >
+          <template id="signup" #signup="{ item }">
             <UFormGroup label="Name" name="name" size="lg" class="mb-4 mt-6">
               <UInput v-model="signupForm.name" placeholder="Enter your name" />
             </UFormGroup>
@@ -71,11 +76,15 @@
             >
             <p class="text-center">
               Already have an account?
-              <a href="" class="text-primary font-semibold">Log in</a>
+              <NuxtLink
+                @click="changeTab(1)"
+                class="text-primary font-semibold hover:cursor-pointer"
+                >Log in</NuxtLink
+              >
             </p>
           </template>
 
-          <template #login="{ item }">
+          <template id="login" #login="{ item }">
             <UFormGroup label="Email" name="email" size="lg" class="mb-4">
               <UInput
                 type="email"
@@ -123,7 +132,11 @@
             >
             <p class="text-center">
               Don't have an account?
-              <a href="" class="text-primary font-semibold">Sign up</a>
+              <NuxtLink
+                @click="changeTab(0)"
+                class="text-primary font-semibold hover:cursor-pointer"
+                >Sign up</NuxtLink
+              >
             </p>
           </template>
         </UTabs>
@@ -156,6 +169,10 @@ const tabTaglines = [
 
 const selectedTabIndex = ref(0);
 function onTabChange(index: number) {
+  selectedTabIndex.value = index;
+}
+
+function changeTab(index: number) {
   selectedTabIndex.value = index;
 }
 
