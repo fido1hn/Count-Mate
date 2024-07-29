@@ -1,9 +1,11 @@
 <template>
-  <div class="container mx-auto max-w-4xl px-5">
-    <AppHeader />
-    <main class="my-10">
-      <slot />
-    </main>
+  <div class="container mx-auto min-h-screen max-w-full">
+    <div class="grid grid-cols-[280px_auto]">
+      <SideBar />
+      <main class="border-l dark:border-gray-700">
+        <slot />
+      </main>
+    </div>
   </div>
 </template>
 

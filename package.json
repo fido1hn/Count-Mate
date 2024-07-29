@@ -19,6 +19,8 @@
     "@faker-js/faker": "^8.4.1",
     "@iconify-json/flat-color-icons": "^1.1.10",
     "@iconify-json/heroicons": "^1.1.23",
+    "@iconify-json/solar": "^1.1.9",
+    "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/supabase": "^1.2.2",
     "date-fns": "^3.6.0",
     "nuxt": "^3.12.4",
