@@ -1,4 +1,6 @@
-# Nuxt 3 Minimal Starter
+# Finance Tracker, Nuxt, Nuxt UI
+
+Finance tracker allows businesses keep track of daily transactions on the go, and get finiancial reports.
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
