@@ -29,7 +29,7 @@
     />
     <div class="flex gap-3">
       <img
-        src="/public/default-user.jpg"
+        src="/public/evan.jpg"
         alt="User Profile image"
         class="h-10 w-10 rounded-full"
       />
@@ -60,7 +60,7 @@ const links = [
     },
     {
       label: "Projects",
-      icon: "i-heroicons-square-3-stack-3d",
+      icon: "i-solar-layers-minimalistic-outline",
       to: "",
     },
     {
