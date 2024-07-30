@@ -1,7 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
   devtools: { enabled: true },
-  modules: ["@nuxtjs/supabase", "@nuxt/ui", "@nuxtjs/google-fonts"],
+  modules: [
+    "@nuxtjs/supabase",
+    "@nuxt/ui",
+    "@nuxtjs/google-fonts",
+    "shadcn-nuxt",
+  ],
 
   supabase: {
     redirect: true,
@@ -11,6 +17,18 @@ export default defineNuxtConfig({
     families: {
       Inter: "200..700",
     },
+  },
+
+  shadcn: {
+    /**
+     * Prefix for all the imported component
+     */
+    prefix: "",
+    /**
+     * Directory that the component lives in.
+     * @default "./components/ui"
+     */
+    componentDir: "./components/ui",
   },
 
   // runtime config

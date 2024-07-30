@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6">
+  <div class="w-full p-6">
     <h1 class="mb-5 text-3xl font-semibold">Dashboard</h1>
 
     <div class="mb-5 flex items-center justify-between">
@@ -45,7 +45,7 @@
     </div>
 
     <div class="flex items-start justify-between">
-      <div class="flex items-start gap-8">
+      <div class="flex items-start gap-5">
         <div>
           <p class="mb-1 text-sm text-gray-600 dark:text-gray-400">MRR</p>
           <div class="flex items-start">
@@ -60,8 +60,18 @@
             </div>
           </div>
         </div>
-        <LineChart />
-        <!-- <h1>Hello world</h1> -->
+        <AreaChart
+          class="h-[200px] w-[750px]"
+          index="name"
+          :colors="['purple', 'violet']"
+          :show-gradiant="true"
+          :data="data"
+          :categories="['total']"
+          :show-grid-line="true"
+          :show-legend="false"
+          :show-x-axis="true"
+          :show-y-axis="false"
+        />
       </div>
 
       <div class="flex flex-col gap-y-3 pr-24">
@@ -118,9 +128,25 @@
 </template>
 
 <script lang="js" setup>
+import { AreaChart } from "@/components/ui/chart-area";
 import { format } from "date-fns";
 
 const date = ref(new Date());
+
+const data = [
+  { name: "Jan", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Feb", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Mar", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Apr", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "May", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Jun", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Jul", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Aug", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Sep", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Oct", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Nov", total: Math.floor(Math.random() * 2000) + 1000 },
+  { name: "Dec", total: Math.floor(Math.random() * 2000) + 1000 },
+];
 </script>
 
 <style></style>
