@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="flex items-start justify-between">
+    <div class="mb-9 flex items-start justify-between">
       <div class="flex items-start gap-5">
         <div>
           <p class="mb-1 text-sm text-gray-600 dark:text-gray-400">MRR</p>
@@ -124,6 +124,11 @@
         </div>
       </div>
     </div>
+
+    <section>
+      <h2 class="text-lg font-semibold">Transaction History</h2>
+      <TransactionTable />
+    </section>
   </div>
 </template>
 

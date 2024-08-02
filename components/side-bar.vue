@@ -27,7 +27,7 @@
       }"
       class="mb-auto items-center"
     />
-    <div class="flex gap-3">
+    <div class="sticky bottom-5 flex gap-3">
       <img
         src="/public/evan.jpg"
         alt="User Profile image"
