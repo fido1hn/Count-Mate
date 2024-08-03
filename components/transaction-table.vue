@@ -67,7 +67,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container mx-auto py-10">
-    <DataTable :columns="columns" :data="data" striped />
+  <div class="container mx-auto py-5">
+    <DataTable :columns="columns" :data="data" />
   </div>
 </template>

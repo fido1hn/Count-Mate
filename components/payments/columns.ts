@@ -12,17 +12,19 @@ export interface Payment {
 export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "date",
-    header: () => h("div", { class: "text-left font-semibold" }, "Date"),
+    header: () =>
+      h("div", { class: "text-left, font-semibold, text-base" }, "Date"),
     cell: ({ row }) => {
       const date = String(row.getValue("date"));
       const formatted = date.split("T")[0];
 
-      return h("div", { class: "text-left font-medium" }, formatted);
+      return h("div", { class: "text-left, font-medium" }, formatted);
     },
   },
   {
     accessorKey: "time",
-    header: () => h("div", { class: "text-left, font-semibold" }, "Time"),
+    header: () =>
+      h("div", { class: "text-left, font-semibold, text-base" }, "Time"),
     cell: ({ row }) => {
       // Convert ISO time to a Date object
       const date = new Date(row.getValue("date"));
@@ -46,7 +48,8 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "payment_method",
-    header: () => h("div", { class: "text-left, font-semibold" }, "Payed with"),
+    header: () =>
+      h("div", { class: "text-left, font-semibold, text-base" }, "Payed with"),
     cell: ({ row }) => {
       const payment_method = String(row.getValue("payment_method"));
 
@@ -58,7 +61,8 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "amount",
-    header: () => h("div", { class: "text-left, font-semibold" }, "Amount"),
+    header: () =>
+      h("div", { class: "text-left, font-semibold, text-base" }, "Amount"),
     cell: ({ row }) => {
       const amount = Number.parseFloat(row.getValue("amount"));
       const formatted = new Intl.NumberFormat("en-NG", {
@@ -80,6 +84,7 @@ export const columns: ColumnDef<Payment>[] = [
         { class: "relative" },
         h(DropdownAction, {
           payment,
+          onExpand: row.toggleExpanded,
         }),
       );
     },

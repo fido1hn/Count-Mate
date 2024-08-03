@@ -37,15 +37,20 @@
         <p class="text-sm font-semibold">Evan You</p>
         <p class="text-sm">evan@financetracker.io</p>
       </div>
-      <UIcon
-        name="i-heroicons-arrow-right-on-rectangle-solid"
-        class="h-6 w-6"
-      />
+      <button @click="signOut">
+        <UIcon
+          name="i-heroicons-arrow-right-on-rectangle-solid"
+          class="h-6 w-6"
+        />
+      </button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+const supabase = useSupabaseClient();
+// const user = useSupabaseUser();
+
 const links = [
   [
     {
@@ -90,4 +95,9 @@ const links = [
     },
   ],
 ];
+
+async function signOut() {
+  await supabase.auth.signOut();
+  return (window.location.href = "/");
+}
 </script>
