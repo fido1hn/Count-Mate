@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-dvh">
+  <div class="flex h-screen">
     <SideBar class="h-lvh flex-none" />
     <main class="flex-1 overflow-auto border-l dark:border-gray-700">
       <slot />
