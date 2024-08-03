@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-dvh flex-col p-5">
+  <div class="flex h-screen flex-col p-5">
     <div class="mb-4 flex items-center gap-3">
       <img src="/public/icon.png" alt="Untitled UI Logo" class="h-8 w-8" />
       <h2 class="text-lg font-semibold">Finace Tracker</h2>
@@ -27,7 +27,7 @@
       }"
       class="mb-auto items-center"
     />
-    <div class="sticky bottom-5 flex gap-3">
+    <div class="flex gap-3">
       <img
         src="/public/evan.jpg"
         alt="User Profile image"
