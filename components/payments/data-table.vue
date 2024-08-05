@@ -1,6 +1,12 @@
 <script setup lang="ts" generic="TData, TValue">
+import { Button } from "@/components/ui/button";
 import type { ColumnDef } from "@tanstack/vue-table";
-import { FlexRender, getCoreRowModel, useVueTable } from "@tanstack/vue-table";
+import {
+  FlexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useVueTable,
+} from "@tanstack/vue-table";
 
 import {
   Table,
@@ -24,6 +30,7 @@ const table = useVueTable({
     return props.columns;
   },
   getCoreRowModel: getCoreRowModel(),
+  getPaginationRowModel: getPaginationRowModel(),
 });
 </script>
 
@@ -68,5 +75,39 @@ const table = useVueTable({
         </template>
       </TableBody>
     </Table>
+    <div class="mt-2 flex items-center justify-between py-4">
+      <Button
+        variant="outline"
+        size="sm"
+        :disabled="!table.getCanPreviousPage()"
+        class="dark:bg-gray-900"
+        @click="table.previousPage()"
+      >
+        <UIcon
+          name="i-heroicons-arrow-long-left-20-solid"
+          class="mr-2 h-4 w-4"
+        />
+        Previous
+      </Button>
+      <div
+        class="flex w-[100px] items-center justify-center text-sm font-medium"
+      >
+        Page {{ table.getState().pagination.pageIndex + 1 }} of
+        {{ table.getPageCount() }}
+      </div>
+      <Button
+        variant="outline"
+        size="sm"
+        :disabled="!table.getCanNextPage()"
+        class="dark:bg-gray-900"
+        @click="table.nextPage()"
+      >
+        Next
+        <UIcon
+          name="i-heroicons-arrow-long-right-20-solid"
+          class="ml-2 h-4 w-4"
+        />
+      </Button>
+    </div>
   </div>
 </template>

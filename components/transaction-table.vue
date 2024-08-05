@@ -57,6 +57,42 @@ async function getData(): Promise<Payment[]> {
       payment_method: "transfer",
       date: "2024-08-02T16:16:05.571Z",
     },
+    {
+      id: "489e1d42",
+      amount: 12500,
+      payment_method: "transfer",
+      date: "2024-08-02T16:16:05.571Z",
+    },
+    {
+      id: "489e1d42",
+      amount: 12500,
+      payment_method: "transfer",
+      date: "2024-08-02T16:16:05.571Z",
+    },
+    {
+      id: "489e1d42",
+      amount: 12500,
+      payment_method: "transfer",
+      date: "2024-08-02T16:16:05.571Z",
+    },
+    {
+      id: "489e1d42",
+      amount: 12500,
+      payment_method: "transfer",
+      date: "2024-08-02T16:16:05.571Z",
+    },
+    {
+      id: "489e1d42",
+      amount: 12500,
+      payment_method: "transfer",
+      date: "2024-08-02T16:16:05.571Z",
+    },
+    {
+      id: "489e1d42",
+      amount: 12500,
+      payment_method: "transfer",
+      date: "2024-08-02T16:16:05.571Z",
+    },
     // ...
   ];
 }
