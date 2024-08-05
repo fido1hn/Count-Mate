@@ -28,9 +28,9 @@ const table = useVueTable({
 </script>
 
 <template>
-  <div class="rounded-md border">
+  <div class="">
     <Table>
-      <TableHeader>
+      <TableHeader class="">
         <TableRow
           v-for="headerGroup in table.getHeaderGroups()"
           :key="headerGroup.id"

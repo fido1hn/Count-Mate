@@ -125,7 +125,7 @@
       </div>
     </div>
 
-    <section>
+    <section class="">
       <h2 class="text-xl font-semibold">Transaction History</h2>
       <TransactionTable />
     </section>

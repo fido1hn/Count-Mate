@@ -1,6 +1,7 @@
 import { h } from "vue";
 import { type ColumnDef } from "@tanstack/vue-table";
 import DropdownAction from "@/components/payments/data-table-dropdown.vue";
+import { UIcon } from "#components";
 
 export interface Payment {
   id: string;
@@ -13,10 +14,18 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "date",
     header: () =>
-      h("div", { class: "text-left, font-semibold, text-base" }, "Date"),
+      h(
+        "div",
+        { class: "text-left, font-semibold, text-base text-gray-500" },
+        "Date",
+      ),
     cell: ({ row }) => {
-      const date = String(row.getValue("date"));
-      const formatted = date.split("T")[0];
+      const date = new Date(row.getValue("date"));
+      const formatted = date.toLocaleDateString("en-NG", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
 
       return h("div", { class: "text-left, font-medium" }, formatted);
     },
@@ -24,7 +33,11 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "time",
     header: () =>
-      h("div", { class: "text-left, font-semibold, text-base" }, "Time"),
+      h(
+        "div",
+        { class: "text-left, font-semibold, text-base text-gray-500" },
+        "Time",
+      ),
     cell: ({ row }) => {
       // Convert ISO time to a Date object
       const date = new Date(row.getValue("date"));
@@ -49,20 +62,36 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "payment_method",
     header: () =>
-      h("div", { class: "text-left, font-semibold, text-base" }, "Payed with"),
+      h(
+        "div",
+        { class: "text-left, font-semibold, text-base text-gray-500" },
+        "Payed with",
+      ),
     cell: ({ row }) => {
       const payment_method = String(row.getValue("payment_method"));
 
       const formatted =
         payment_method.charAt(0).toUpperCase() + payment_method.slice(1);
 
-      return h("div", { class: "text-left font-medium" }, formatted);
+      const icon =
+        payment_method === "transfer"
+          ? "i-solar-transfer-horizontal-linear"
+          : "i-heroicons-credit-card";
+
+      return h("div", { class: "text-left font-medium flex items-center" }, [
+        h(UIcon, { name: icon, class: "w-4 h-4 mr-1.5" }),
+        formatted,
+      ]);
     },
   },
   {
     accessorKey: "amount",
     header: () =>
-      h("div", { class: "text-left, font-semibold, text-base" }, "Amount"),
+      h(
+        "div",
+        { class: "text-left, font-semibold, text-base text-gray-500" },
+        "Amount",
+      ),
     cell: ({ row }) => {
       const amount = Number.parseFloat(row.getValue("amount"));
       const formatted = new Intl.NumberFormat("en-NG", {

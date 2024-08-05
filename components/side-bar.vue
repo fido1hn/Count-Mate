@@ -19,7 +19,7 @@
         font: 'font-meduim',
         size: 'text-lg',
         base: 'gap-3',
-        inactive: 'text-gray-600 dark:text-gray-300',
+        inactive: 'text-gray-700 dark:text-gray-300',
         icon: {
           inactive: 'text-gray-500',
           base: 'h-6 w-6',
