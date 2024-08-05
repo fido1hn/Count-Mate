@@ -17,6 +17,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 const props = defineProps<{
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -75,6 +83,7 @@ const table = useVueTable({
         </template>
       </TableBody>
     </Table>
+
     <div class="mt-2 flex items-center justify-between py-4">
       <Button
         variant="outline"
@@ -89,12 +98,40 @@ const table = useVueTable({
         />
         Previous
       </Button>
-      <div
-        class="flex w-[100px] items-center justify-center text-sm font-medium"
-      >
-        Page {{ table.getState().pagination.pageIndex + 1 }} of
-        {{ table.getPageCount() }}
+
+      <div class="flex items-center">
+        <!-- Adding this section breaks chrome(add a second scrollbar) but not firefox -->
+        <!-- <div class="flex items-center space-x-2">
+          <p class="text-sm font-medium">Rows per page</p>
+          <Select
+            :model-value="`${table.getState().pagination.pageSize}`"
+            @update:model-value="table.setPageSize"
+          >
+            <SelectTrigger class="h-8 w-[70px]">
+              <SelectValue
+                :placeholder="`${table.getState().pagination.pageSize}`"
+              />
+            </SelectTrigger>
+            <SelectContent side="top" class="dark:bg-gray-800">
+              <SelectItem
+                v-for="pageSize in [10, 20, 30, 40, 50]"
+                :key="pageSize"
+                :value="`${pageSize}`"
+              >
+                {{ pageSize }}
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div> -->
+
+        <div
+          class="flex w-[100px] items-center justify-center text-sm font-medium"
+        >
+          Page {{ table.getState().pagination.pageIndex + 1 }} of
+          {{ table.getPageCount() }}
+        </div>
       </div>
+
       <Button
         variant="outline"
         size="sm"
