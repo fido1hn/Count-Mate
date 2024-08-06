@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@nuxt/ui':
-        specifier: ^2.18.3
-        version: 2.18.3(magicast@0.3.4)(rollup@4.20.0)(vite@5.3.5(@types/node@22.1.0)(terser@5.31.3))(vue@3.4.35(typescript@5.5.4))
+        specifier: ^2.18.4
+        version: 2.18.4(magicast@0.3.4)(rollup@4.20.0)(vite@5.3.5(@types/node@22.1.0)(terser@5.31.3))(vue@3.4.35(typescript@5.5.4))
       '@radix-icons/vue':
         specifier: ^1.0.0
         version: 1.0.0(vue@3.4.35(typescript@5.5.4))
@@ -940,8 +940,8 @@ packages:
     resolution: {integrity: sha512-KH6wxzsNys69daSO0xUv0LEBAfhwwjK1M+0Cdi1/vxmifCslMIY7lN11B4eywSfscbyVPAYJvANyc7XiVPImBQ==}
     hasBin: true
 
-  '@nuxt/ui@2.18.3':
-    resolution: {integrity: sha512-bFy3K0cDPRlEYclQAjIgVFUGFb91sGYAtBmEzunFux85aUw0g4tI7vsWdyVijhKzGOyOjBuLGaG40kGl4AIXpA==}
+  '@nuxt/ui@2.18.4':
+    resolution: {integrity: sha512-NzFUzh5Izd7mduhYhFBlIOcqE8aY+9mbSQ0n8sIASpASv162VJ46OsR5Jm5sbfhKDrgv7UsBk6VKXJXiEI7ThQ==}
     engines: {node: '>=v16.20.2'}
 
   '@nuxt/vite-builder@3.12.4':
@@ -5427,7 +5427,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@nuxt/ui@2.18.3(magicast@0.3.4)(rollup@4.20.0)(vite@5.3.5(@types/node@22.1.0)(terser@5.31.3))(vue@3.4.35(typescript@5.5.4))':
+  '@nuxt/ui@2.18.4(magicast@0.3.4)(rollup@4.20.0)(vite@5.3.5(@types/node@22.1.0)(terser@5.31.3))(vue@3.4.35(typescript@5.5.4))':
     dependencies:
       '@headlessui/tailwindcss': 0.2.1(tailwindcss@3.4.7)
       '@headlessui/vue': 1.7.22(vue@3.4.35(typescript@5.5.4))

@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full p-6">
-    <h1 class="mb-5 text-3xl font-semibold">Dashboard</h1>
+  <div class="p-6">
+    <h1 class="mb-5 text-3xl font-semibold">Reports</h1>
 
     <div class="mb-5 flex items-center justify-between">
       <UButtonGroup
@@ -124,15 +124,14 @@
         </div>
       </div>
     </div>
-
-    <section class="overflow-auto">
-      <h2 class="text-xl font-semibold">Transaction History</h2>
-      <TransactionTable />
-    </section>
   </div>
 </template>
 
 <script lang="js" setup>
+useHead({
+  title: "Reports",
+});
+
 import { AreaChart } from "@/components/ui/chart-area";
 import { format } from "date-fns";
 

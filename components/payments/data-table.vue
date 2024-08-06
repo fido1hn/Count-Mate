@@ -89,7 +89,7 @@ const table = useVueTable({
         variant="outline"
         size="sm"
         :disabled="!table.getCanPreviousPage()"
-        class="dark:bg-gray-900"
+        class="hover:cursor-pointer dark:bg-gray-900 dark:hover:bg-gray-800"
         @click="table.previousPage()"
       >
         <UIcon
@@ -100,7 +100,7 @@ const table = useVueTable({
       </Button>
 
       <div class="flex items-center">
-        <!-- Adding this section breaks chrome(add a second scrollbar) but not firefox -->
+        <!-- Adding this below div breaks chrome(adds a second scrollbar) but not firefox -->
         <!-- <div class="flex items-center space-x-2">
           <p class="text-sm font-medium">Rows per page</p>
           <Select
@@ -136,7 +136,7 @@ const table = useVueTable({
         variant="outline"
         size="sm"
         :disabled="!table.getCanNextPage()"
-        class="dark:bg-gray-900"
+        class="hover:cursor-pointer dark:bg-gray-900 dark:hover:bg-gray-800"
         @click="table.nextPage()"
       >
         Next

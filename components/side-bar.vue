@@ -56,12 +56,12 @@ const links = [
     {
       label: "Home",
       icon: "i-solar-home-smile-linear",
-      to: "",
+      to: "/",
     },
     {
       label: "Dashboard",
       icon: "i-heroicons-chart-bar-square",
-      to: "",
+      to: "/dashboard",
     },
     {
       label: "Projects",
@@ -76,7 +76,7 @@ const links = [
     {
       label: "Reporting",
       icon: "i-heroicons-chart-pie",
-      to: "",
+      to: "/reports",
     },
     {
       label: "Users",

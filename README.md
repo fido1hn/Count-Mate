@@ -1,6 +1,6 @@
 # Finance Tracker, Nuxt, Nuxt UI, Supabase
 
-Finance tracker allows businesses keep track of daily transactions on the go, and get finiancial reports.
+Finance tracker allows POS agents keep track of daily transactions on the go, and get finiancial reports.
 
 ## Setup
 

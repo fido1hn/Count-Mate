@@ -81,7 +81,7 @@
               Already have an account?
               <NuxtLink
                 @click="changeTab(1)"
-                class="text-primary font-semibold hover:cursor-pointer"
+                class="font-semibold text-primary hover:cursor-pointer"
                 >Log in</NuxtLink
               >
             </p>
@@ -109,7 +109,7 @@
                   name="rememberUser"
                   label="Remember for 30 days"
                 />
-                <p class="text-primary text-sm font-semibold">
+                <p class="text-sm font-semibold text-primary">
                   Forgot Password
                 </p>
               </div>
@@ -137,7 +137,7 @@
               Don't have an account?
               <NuxtLink
                 @click="changeTab(0)"
-                class="text-primary font-semibold hover:cursor-pointer"
+                class="font-semibold text-primary hover:cursor-pointer"
                 >Sign up</NuxtLink
               >
             </p>
@@ -149,6 +149,10 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  title: "Login",
+});
+
 definePageMeta({
   layout: false,
 });

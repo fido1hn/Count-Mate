@@ -106,16 +106,7 @@ export const columns: ColumnDef<Payment>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
-
-      return h(
-        "div",
-        { class: "relative" },
-        h(DropdownAction, {
-          payment,
-          onExpand: row.toggleExpanded,
-        }),
-      );
+      return h("div", { class: "relative" }, h(DropdownAction));
     },
   },
 ];

@@ -11,7 +11,7 @@
     "seed": "bun seed.mjs"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.18.3",
+    "@nuxt/ui": "^2.18.4",
     "@radix-icons/vue": "^1.0.0",
     "@tanstack/vue-table": "^8.19.3",
     "@unovis/ts": "^1.4.3",

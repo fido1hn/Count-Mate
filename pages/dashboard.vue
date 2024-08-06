@@ -1,121 +1,161 @@
 <template>
-  <div>
-    <section class="mb-10 flex items-center justify-between">
-      <h1 class="text-4xl font-extrabold">Summary</h1>
-      <div>
-        <USelectMenu :options="transactionViewOptions" v-model="selectedView" />
-      </div>
-    </section>
-    <section
-      class="mb-10 grid grid-cols-1 sm:grid-cols-2 sm:gap-16 lg:grid-cols-4"
-    >
-      <Trend
-        color="green"
-        title="Income"
-        :amount="incomeTotal"
-        :last-amount="prevIncomeTotal"
-        :loading="pending"
-      />
-      <Trend
-        color="red"
-        title="Expense"
-        :amount="expenseTotal"
-        :last-amount="prevExpenseTotal"
-        :loading="pending"
-      />
-      <Trend
-        color="green"
-        title="Investments"
-        :amount="4000"
-        :last-amount="3000"
-        :loading="pending"
-      />
-      <Trend
-        color="red"
-        title="Saving"
-        :amount="4000"
-        :last-amount="4100"
-        :loading="pending"
-      />
-    </section>
-    <section class="mb-10 flex justify-between">
-      <div>
-        <h2 class="text-2xl font-extrabold">Transactions</h2>
-        <div class="text-gray-500 dark:text-gray-400">
-          You have {{ incomeCount }} incomes and {{ expenseCount }} expenses
-          this period
+  <div class="w-full p-6">
+    <section class="mb-7">
+      <h1 class="mb-1 text-3xl font-semibold">Dashboard</h1>
+      <p class="mb-6 text-gray-600 dark:text-gray-400">
+        Your current sales summary and activity
+      </p>
+
+      <div class="flex justify-between">
+        <UButtonGroup
+          size="md"
+          orientation="horizontal"
+          :ui="{ rouded: 'rounded-lg' }"
+        >
+          <UButton label="Default" color="white" activeClass="active" />
+          <UButton
+            icon="i-radix-icons-dot-filled"
+            :trailing="false"
+            label="Saved view"
+            color="white"
+          />
+          <UButton label="SDR view" color="white" />
+          <UButton icon="i-radix-icons-plus" color="white" />
+        </UButtonGroup>
+
+        <div class="flex gap-2">
+          <UPopover :popper="{ placement: 'bottom-start' }">
+            <UButton
+              color="white"
+              size="md"
+              icon="i-heroicons-calendar-days-20-solid"
+              :label="format(date, 'd MMM, yyy')"
+            />
+            <template #panel="{ close }">
+              <DatePicker
+                v-model="date"
+                :model-value="date.value"
+                is-required
+                @close="close"
+              />
+            </template>
+          </UPopover>
+          <UButton
+            icon="i-solar-list-outline"
+            size="md"
+            color="white"
+            variant="solid"
+            label="Filters"
+            :trailing="false"
+          />
         </div>
       </div>
-      <div>
-        <TransactionModal v-model="isOpen" @saved="refresh" />
-        <UButton
-          icon="i-heroicons-plus-circle"
-          color="white"
-          variant="solid"
-          label="Add"
-          @click="isOpen = true"
-        />
+    </section>
+
+    <section class="grid grid-cols-3 grid-rows-3">
+      <div class="col-span-2 flex gap-7">
+        <div
+          class="w-60 rounded-lg border border-gray-200 p-5 dark:border-gray-700"
+        >
+          <div class="mb-3 flex justify-between">
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+              Today's revenue
+            </p>
+            <UIcon
+              name="i-radix-icons-dots-vertical"
+              class="text-gray-600 dark:text-gray-400"
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <p class="text-3xl font-semibold">$1,280</p>
+            <div
+              class="flex items-center rounded-full border border-green-300 bg-green-100 px-1 dark:border-green-700 dark:bg-green-900"
+            >
+              <UIcon
+                name="i-heroicons-arrow-small-up-20-solid"
+                class="h-5 w-5 text-green-600 dark:text-green-300"
+              />
+              <span
+                class="pr-1 text-sm font-semibold text-green-700 dark:text-green-200"
+                >10%</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="w-60 rounded-lg border border-gray-200 p-5 dark:border-gray-700"
+        >
+          <div class="mb-3 flex justify-between">
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+              Today's orders
+            </p>
+            <UIcon
+              name="i-radix-icons-dots-vertical"
+              class="text-gray-600 dark:text-gray-400"
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <p class="text-3xl font-semibold">14</p>
+            <div
+              class="flex items-center rounded-full border border-green-300 bg-green-100 px-1 dark:border-green-700 dark:bg-green-900"
+            >
+              <UIcon
+                name="i-heroicons-arrow-small-up-20-solid"
+                class="h-5 w-5 text-green-600 dark:text-green-300"
+              />
+              <span
+                class="pr-1 text-sm font-semibold text-green-700 dark:text-green-200"
+                >12%</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="w-60 rounded-lg border border-gray-200 p-5 dark:border-gray-700"
+        >
+          <div class="mb-3 flex justify-between">
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+              Avg. order value
+            </p>
+            <UIcon
+              name="i-radix-icons-dots-vertical"
+              class="text-gray-600 dark:text-gray-400"
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <p class="text-3xl font-semibold">$91.42</p>
+            <div
+              class="flex items-center rounded-full border border-red-300 bg-red-100 px-1 dark:border-red-700 dark:bg-red-900"
+            >
+              <UIcon
+                name="i-heroicons-arrow-small-down-20-solid"
+                class="h-5 w-5 text-red-600 dark:text-red-300"
+              />
+              <span
+                class="pr-1 text-sm font-semibold text-red-700 dark:text-red-200"
+                >2%</span
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <section v-if="!pending">
-      <div
-        v-for="(transactionsOnDay, date) in byDate"
-        :key="date"
-        class="mb-10"
-      >
-        <DailyTransactionSummary
-          :date="date"
-          :transactions="transactionsOnDay"
-        />
-        <Transaction
-          v-for="transaction in transactionsOnDay"
-          :key="transaction.id"
-          :transaction="transaction"
-          @edited="refresh"
-          @deleted="refresh"
-        />
-      </div>
-    </section>
-    <section v-else>
-      <USkeleton class="mb-2 h-8 w-full" v-for="i in 4" :key="i" />
-    </section>
+
+    <!-- <section>
+      <h2 class="text-xl font-semibold">Transaction History</h2>
+      <TransactionTable />
+    </section> -->
   </div>
 </template>
 
 <script lang="js" setup>
-// definePageMeta({
-//   layout: "signup",
-// });
+import { format } from "date-fns";
 
-import { transactionViewOptions } from "~/constants";
+useHead({
+  title: "Dashboard",
+});
 
-const user = useSupabaseUser();
-
-const selectedView = ref(
-  user.value.user_metadata?.transaction_view ?? transactionViewOptions[1],
-);
-const isOpen = ref(false);
-const { current, previous } = useSelectedTimePeriod(selectedView);
-
-const {
-  pending,
-  refresh,
-  transactions: {
-    incomeCount,
-    expenseCount,
-    incomeTotal,
-    expenseTotal,
-    grouped: { byDate },
-  },
-} = useFetchTransactions(current);
-await refresh();
-
-const {
-  refresh: refreshPrevious,
-  transactions: {
-    incomeTotal: prevIncomeTotal,
-    expenseTotal: prevExpenseTotal,
-  },
-} = useFetchTransactions(previous);
-await refreshPrevious();
+const date = ref(new Date());
 </script>
