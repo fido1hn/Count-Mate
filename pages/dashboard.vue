@@ -52,10 +52,12 @@
       </div>
     </section>
 
-    <section class="grid grid-cols-4 grid-rows-3 gap-5">
-      <div class="col-span-3 flex h-32 justify-between">
+    <section
+      class="grid-rows-[7rem 22.75rem auto] grid grid-cols-4 gap-x-5 gap-y-9"
+    >
+      <div class="col-span-3 flex h-28 justify-between">
         <div
-          class="w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
+          class="min-w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -66,8 +68,8 @@
               class="text-gray-600 dark:text-gray-400"
             />
           </div>
-          <div class="flex items-center justify-between">
-            <p class="text-3xl font-semibold">$1,280</p>
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-3xl font-semibold">₦128,000</p>
             <div
               class="flex items-center rounded-full border border-green-300 bg-green-100 px-1 dark:border-green-700 dark:bg-green-900"
             >
@@ -84,7 +86,7 @@
         </div>
 
         <div
-          class="w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
+          class="min-w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -113,7 +115,7 @@
         </div>
 
         <div
-          class="w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
+          class="min-w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -125,7 +127,7 @@
             />
           </div>
           <div class="flex items-center justify-between">
-            <p class="text-3xl font-semibold">$91.42</p>
+            <p class="text-3xl font-semibold">₦15,000</p>
             <div
               class="flex items-center rounded-full border border-red-300 bg-red-100 px-1 dark:border-red-700 dark:bg-red-900"
             >
@@ -143,12 +145,13 @@
       </div>
 
       <ActivityBar class="row-span-3 px-4" />
-    </section>
+      <SalesReportCard class="col-span-3" />
 
-    <!-- <section>
-      <h2 class="text-xl font-semibold">Transaction History</h2>
-      <TransactionTable />
-    </section> -->
+      <div class="col-span-3">
+        <h2 class="px-5 text-xl font-semibold">Transaction History</h2>
+        <TransactionTable />
+      </div>
+    </section>
   </div>
 </template>
 
