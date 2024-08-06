@@ -52,10 +52,10 @@
       </div>
     </section>
 
-    <section class="grid grid-cols-3 grid-rows-3">
-      <div class="col-span-2 flex gap-7">
+    <section class="grid grid-cols-4 grid-rows-3 gap-5">
+      <div class="col-span-3 flex h-32 justify-between">
         <div
-          class="w-60 rounded-lg border border-gray-200 p-5 dark:border-gray-700"
+          class="w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -84,7 +84,7 @@
         </div>
 
         <div
-          class="w-60 rounded-lg border border-gray-200 p-5 dark:border-gray-700"
+          class="w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -113,7 +113,7 @@
         </div>
 
         <div
-          class="w-60 rounded-lg border border-gray-200 p-5 dark:border-gray-700"
+          class="w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -141,6 +141,8 @@
           </div>
         </div>
       </div>
+
+      <ActivityBar class="row-span-3 px-4" />
     </section>
 
     <!-- <section>

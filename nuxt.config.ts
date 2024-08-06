@@ -7,10 +7,17 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxtjs/google-fonts",
     "shadcn-nuxt",
+    "@nuxt/image",
   ],
 
   supabase: {
     redirect: true,
+  },
+
+  image: {
+    cloudinary: {
+      baseURL: "https://res.cloudinary.com/di5iopizb/image/upload/v1722940622/",
+    },
   },
 
   googleFonts: {
