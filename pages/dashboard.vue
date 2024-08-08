@@ -6,7 +6,7 @@
         Your current sales summary and activity
       </p>
 
-      <div class="flex justify-between">
+      <div class="flex flex-col justify-between gap-4 lg:flex-row lg:gap-0">
         <UButtonGroup
           size="md"
           orientation="horizontal"
@@ -53,9 +53,11 @@
     </section>
 
     <section
-      class="grid-rows-[7rem 22.75rem auto] grid grid-cols-4 gap-x-5 gap-y-9"
+      class="grid grid-cols-1 gap-y-9 lg:grid-cols-4 lg:grid-rows-[7rem_auto_auto] lg:gap-x-5"
     >
-      <div class="col-span-3 flex h-28 justify-between">
+      <div
+        class="flex flex-col gap-5 lg:col-span-3 lg:flex-row lg:justify-between lg:gap-0"
+      >
         <div
           class="min-w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
@@ -86,7 +88,7 @@
         </div>
 
         <div
-          class="min-w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
+          class="min-w-36 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -97,7 +99,7 @@
               class="text-gray-600 dark:text-gray-400"
             />
           </div>
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between gap-3">
             <p class="text-3xl font-semibold">14</p>
             <div
               class="flex items-center rounded-full border border-green-300 bg-green-100 px-1 dark:border-green-700 dark:bg-green-900"
@@ -126,8 +128,8 @@
               class="text-gray-600 dark:text-gray-400"
             />
           </div>
-          <div class="flex items-center justify-between">
-            <p class="text-3xl font-semibold">₦15,000</p>
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-3xl font-semibold">₦115,000</p>
             <div
               class="flex items-center rounded-full border border-red-300 bg-red-100 px-1 dark:border-red-700 dark:bg-red-900"
             >
@@ -144,11 +146,21 @@
         </div>
       </div>
 
-      <ActivityBar class="row-span-3 px-4" />
+      <ActivityBar class="row-span-3 hidden px-4 lg:block" />
       <SalesReportCard class="col-span-3" />
 
       <div class="col-span-3">
-        <h2 class="px-5 text-xl font-semibold">Transaction History</h2>
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold">Transaction History</h2>
+          <TransactionModal v-model="isOpen" @saved="refresh" />
+          <UButton
+            icon="i-heroicons-plus-circle"
+            color="white"
+            variant="solid"
+            label="Add new"
+            @click="isOpen = true"
+          />
+        </div>
         <TransactionTable />
       </div>
     </section>
@@ -163,4 +175,5 @@ useHead({
 });
 
 const date = ref(new Date());
+const isOpen = ref(false);
 </script>

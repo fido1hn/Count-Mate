@@ -43,9 +43,9 @@ const table = useVueTable({
 </script>
 
 <template>
-  <div class="">
+  <div>
     <Table>
-      <TableHeader class="">
+      <TableHeader>
         <TableRow
           v-for="headerGroup in table.getHeaderGroups()"
           :key="headerGroup.id"

@@ -15,6 +15,7 @@
         color="gray"
         variant="ghost"
         activeClass="active"
+        class="hidden lg:block"
       />
       <UButton label="3 months" color="gray" variant="ghost" />
       <UButton label="30 days" color="gray" variant="ghost" />

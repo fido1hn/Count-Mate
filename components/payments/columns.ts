@@ -16,7 +16,9 @@ export const columns: ColumnDef<Payment>[] = [
     header: () =>
       h(
         "div",
-        { class: "text-left, font-semibold, text-base text-gray-500" },
+        {
+          class: "text-left, font-semibold, text-base text-gray-500",
+        },
         "Date",
       ),
     cell: ({ row }) => {

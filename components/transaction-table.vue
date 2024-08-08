@@ -1,10 +1,43 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { columns } from "./payments/columns";
+import { onMounted, computed, ref } from "vue";
+import { columns as originalColumns } from "./payments/columns";
+import type { ColumnDef } from "@tanstack/vue-table";
 import type { Payment } from "./payments/columns";
 import DataTable from "./payments/data-table.vue";
 
 const data = ref<Payment[]>([]);
+
+const isMobile = ref(false);
+
+// Function to check if the screen is mobile
+const checkMobile = () => {
+  isMobile.value = window.innerWidth < 768; // Adjust this breakpoint as needed
+};
+
+// Set up event listener for resize
+if (typeof window !== "undefined") {
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+}
+
+onUnmounted(() => {
+  window.removeEventListener("resize", checkMobile);
+});
+
+// Compute columns based on screen size
+const columns = computed(() => {
+  if (isMobile.value) {
+    // Filter out the date column on mobile
+    return originalColumns.filter((col: ColumnDef<Payment>) => {
+      if ("accessorKey" in col) {
+        return col.accessorKey !== "date";
+      }
+      // Keep all other columns, including those without accessorKey
+      return true;
+    });
+  }
+  return originalColumns;
+});
 
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
@@ -103,7 +136,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container mx-auto py-5">
+  <div class="py-5">
     <DataTable :columns="columns" :data="data" />
   </div>
 </template>
