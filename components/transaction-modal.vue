@@ -2,58 +2,43 @@
   <UModal v-model="isOpen">
     <UCard>
       <template #header>
-        {{ isEditing ? 'Edit' : 'Add' }} Transaction
+        {{ isEditing ? "Edit" : "Add" }} Transaction
       </template>
 
       <UForm :state="state" :schema="schema" ref="form" @submit.prevent="save">
         <UFormGroup
           :required="true"
-          label="Transaction Type"
+          label="Payed With"
           name="type"
-          class="mb-4">
+          class="mb-4"
+        >
           <USelect
             :disabled="isEditing"
-            :options="transactionTypes"
-            placeholder="Select the transaction type"
-            v-model="state.type" />
+            :options="['Card', 'Transfer']"
+            placeholder="Select the payment method"
+            v-model="state.type"
+          />
         </UFormGroup>
 
         <UFormGroup label="Amount" :required="true" name="amount" class="mb-4">
           <UInput
             type="number"
             placeholder="Amount"
-            v-model.number="state.amount" />
+            v-model.number="state.amount"
+          />
         </UFormGroup>
 
         <UFormGroup
           label="Transaction date"
           :required="true"
           name="created_at"
-          class="mb-4">
+          class="mb-4"
+        >
           <UInput
             type="date"
             icon="i-heroicons-calendar-days-20-solid"
-            v-model="state.created_at" />
-        </UFormGroup>
-
-        <UFormGroup
-          label="Description"
-          hint="Optional"
-          name="description"
-          class="mb-4">
-          <UInput placeholder="Description" v-model="state.description" />
-        </UFormGroup>
-
-        <UFormGroup
-          :required="true"
-          label="Category"
-          name="category"
-          class="mb-4"
-          v-if="state.type === 'Expense'">
-          <USelect
-            :options="categories"
-            placeholder="Select the category"
-            v-model="state.category" />
+            v-model="state.created_at"
+          />
         </UFormGroup>
 
         <UButton
@@ -61,15 +46,16 @@
           color="black"
           variant="solid"
           label="Save"
-          :loading="isLoading" />
+          :loading="isLoading"
+        />
       </UForm>
     </UCard>
   </UModal>
 </template>
 
 <script setup>
-import { categories, transactionTypes } from '~/constants';
-import { z } from 'zod';
+import { categories, transactionTypes } from "~/constants";
+import { z } from "zod";
 
 const props = defineProps({
   modelValue: Boolean,
@@ -81,39 +67,39 @@ const props = defineProps({
 
 const isEditing = computed(() => !!props.transaction);
 
-const emit = defineEmits(['update:modelValue', 'saved']);
+const emit = defineEmits(["update:modelValue", "saved"]);
 
 const defaultSchema = z.object({
   created_at: z.string(),
   description: z.string().optional(),
-  amount: z.number().positive('Amount needs to be more than 0'),
+  amount: z.number().positive("Amount needs to be more than 0"),
 });
 
 const incomeSchema = z.object({
-  type: z.literal('Income'),
+  type: z.literal("Income"),
 });
 
 const expenseSchema = z.object({
-  type: z.literal('Expense'),
+  type: z.literal("Expense"),
   category: z.enum(categories),
 });
 
 const investmentSchema = z.object({
-  type: z.literal('Investment'),
+  type: z.literal("Investment"),
 });
 
 const savingSchema = z.object({
-  type: z.literal('Saving'),
+  type: z.literal("Saving"),
 });
 
 const schema = z.intersection(
-  z.discriminatedUnion('type', [
+  z.discriminatedUnion("type", [
     incomeSchema,
     expenseSchema,
     investmentSchema,
     savingSchema,
   ]),
-  defaultSchema
+  defaultSchema,
 );
 
 const form = ref();
@@ -126,24 +112,24 @@ const save = async () => {
 
   isLoading.value = true;
   try {
-    const { error } = await supabase.from('transactions').upsert({
+    const { error } = await supabase.from("transactions").upsert({
       ...state.value,
       id: props.transaction?.id,
     });
 
     if (!error) {
       toastSuccess({
-        title: 'Transaction saved',
+        title: "Transaction saved",
       });
       isOpen.value = false;
-      emit('saved');
+      emit("saved");
       return;
     }
 
     throw error;
   } catch (error) {
     toastError({
-      title: 'Transaction not saved',
+      title: "Transaction not saved",
       description: error.message,
     });
   } finally {
@@ -155,7 +141,7 @@ const initialState = isEditing.value
   ? {
       type: props.transaction.type,
       amount: props.transaction.amount,
-      created_at: props.transaction.created_at.split('T')[0],
+      created_at: props.transaction.created_at.split("T")[0],
       description: props.transaction.description,
       category: props.transaction.category,
     }
@@ -180,7 +166,7 @@ const isOpen = computed({
   get: () => props.modelValue,
   set: (value) => {
     if (!value) resetForm();
-    emit('update:modelValue', value);
+    emit("update:modelValue", value);
   },
 });
 </script>

@@ -69,8 +69,8 @@
                   class="h-12 w-12 rounded-full"
                 />
                 <div class="">
-                  <p class="text-lg font-semibold">Evan You</p>
-                  <p class="text-base">evan@financetracker.io</p>
+                  <p class="text-md font-semibold">Evan You</p>
+                  <p class="text-sm">evan@financetracker.io</p>
                 </div>
               </div>
               <UButton
