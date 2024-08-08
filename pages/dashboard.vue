@@ -155,9 +155,10 @@
           <TransactionModal v-model="isOpen" @saved="refresh" />
           <UButton
             icon="i-heroicons-plus-circle"
-            color="white"
+            color="violet"
+            size="md"
             variant="solid"
-            label="Add new"
+            label="Add New"
             @click="isOpen = true"
           />
         </div>
