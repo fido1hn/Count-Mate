@@ -8,6 +8,7 @@ export interface Payment {
   amount: number;
   payment_method: string;
   date: string;
+  time: string;
 }
 
 export const columns: ColumnDef<Payment>[] = [
@@ -42,11 +43,11 @@ export const columns: ColumnDef<Payment>[] = [
       ),
     cell: ({ row }) => {
       // Convert ISO time to a Date object
-      const date = new Date(row.getValue("date"));
+      const time = new Date(row.getValue("time"));
 
       // Extract hours and minutes from the Date object
-      const hours = date.getHours();
-      const minutes = date.getMinutes();
+      const hours = time.getHours();
+      const minutes = time.getMinutes();
 
       // Check if it's morning or afternoon/evening
       const period = hours < 12 ? "am" : "pm";
