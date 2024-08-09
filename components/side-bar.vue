@@ -49,12 +49,13 @@
         <p class="text-sm font-semibold">Evan You</p>
         <p class="text-sm">evan@financetracker.io</p>
       </div>
-      <button @click="signOut">
-        <UIcon
-          name="i-heroicons-arrow-right-on-rectangle-solid"
-          class="h-6 w-6 max-[1360px]:hidden"
-        />
-      </button>
+      <UButton
+        icon="i-heroicons-arrow-right-on-rectangle-solid"
+        size="xl"
+        variant="ghost"
+        @click="signOut"
+        class="max-[1360px]:hidden"
+      />
     </div>
   </div>
 </template>

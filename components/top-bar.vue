@@ -75,15 +75,8 @@
               </div>
               <UButton
                 icon="i-heroicons-arrow-right-on-rectangle-solid"
-                size="2xl"
+                size="xl"
                 variant="ghost"
-                :ui="{
-                  icon: {
-                    size: {
-                      '2xl': 'h-8 w-8',
-                    },
-                  },
-                }"
                 @click="signOut"
               />
             </div>

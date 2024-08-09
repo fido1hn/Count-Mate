@@ -5,7 +5,7 @@
         {{ isEditing ? "Edit" : "Add" }} Transaction
       </template>
 
-      <UForm :state="state" :schema="schema" ref="form" @submit.prevent="save">
+      <UForm :state="state" :schema="TransactionSchema" @submit.prevent="save">
         <UFormGroup
           :required="true"
           label="Payed With"
@@ -16,7 +16,7 @@
             :disabled="isEditing"
             :options="['Card', 'Transfer']"
             placeholder="Select the payment method"
-            v-model="state.type"
+            v-model="state.payment_type"
           />
         </UFormGroup>
 
@@ -38,6 +38,7 @@
             type="date"
             icon="i-heroicons-calendar-days-20-solid"
             v-model="state.created_at"
+            :disabled="true"
           />
         </UFormGroup>
 
@@ -54,66 +55,54 @@
 </template>
 
 <script setup>
-import { categories, transactionTypes } from "~/constants";
-import { z } from "zod";
+import { TransactionSchema } from "~/schemas/TransactionSchema";
 
+// Composables
+const supabase = useSupabaseClient();
+const { toastSuccess, toastError } = useAppToast();
+
+// Props
 const props = defineProps({
   modelValue: Boolean,
   transaction: {
-    type: Object,
+    payment_type: Object,
     required: false,
   },
 });
 
+// Editing
 const isEditing = computed(() => !!props.transaction);
+const isLoading = ref(false);
 
+// State
+const initialState = isEditing.value
+  ? {
+      payment_type: props.transaction.payment_type,
+      amount: props.transaction.amount,
+      created_at: new Date(props.transaction.created_at)
+        .toISOString()
+        .split("T")[0],
+    }
+  : {
+      payment_type: "Card",
+      amount: 0,
+      created_at: new Date().toISOString().split("T")[0],
+    };
+
+const state = ref({
+  ...initialState,
+});
+
+// Save
 const emit = defineEmits(["update:modelValue", "saved"]);
 
-const defaultSchema = z.object({
-  created_at: z.string(),
-  description: z.string().optional(),
-  amount: z.number().positive("Amount needs to be more than 0"),
-});
-
-const incomeSchema = z.object({
-  type: z.literal("Income"),
-});
-
-const expenseSchema = z.object({
-  type: z.literal("Expense"),
-  category: z.enum(categories),
-});
-
-const investmentSchema = z.object({
-  type: z.literal("Investment"),
-});
-
-const savingSchema = z.object({
-  type: z.literal("Saving"),
-});
-
-const schema = z.intersection(
-  z.discriminatedUnion("type", [
-    incomeSchema,
-    expenseSchema,
-    investmentSchema,
-    savingSchema,
-  ]),
-  defaultSchema,
-);
-
-const form = ref();
-const isLoading = ref(false);
-const supabase = useSupabaseClient();
-const { toastSuccess, toastError } = useAppToast();
-
 const save = async () => {
-  // if (form.value.errors.length) return;
-
   isLoading.value = true;
+
   try {
     const { error } = await supabase.from("transactions").upsert({
-      ...state.value,
+      amount: state.value.amount,
+      payment_type: state.value.payment_type,
       id: props.transaction?.id,
     });
 
@@ -137,29 +126,8 @@ const save = async () => {
   }
 };
 
-const initialState = isEditing.value
-  ? {
-      type: props.transaction.type,
-      amount: props.transaction.amount,
-      created_at: props.transaction.created_at.split("T")[0],
-      description: props.transaction.description,
-      category: props.transaction.category,
-    }
-  : {
-      type: undefined,
-      amount: 0,
-      created_at: undefined,
-      description: undefined,
-      category: undefined,
-    };
-
-const state = ref({
-  ...initialState,
-});
-
 const resetForm = () => {
   Object.assign(state.value, initialState);
-  // form.value.clear();
 };
 
 const isOpen = computed({
