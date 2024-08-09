@@ -30,7 +30,7 @@
 
         <UFormGroup
           label="Transaction date"
-          :required="true"
+          :required="false"
           name="created_at"
           class="mb-4"
         >

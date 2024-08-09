@@ -1,6 +1,6 @@
 import { h } from "vue";
 import { type ColumnDef } from "@tanstack/vue-table";
-import DropdownAction from "@/components/payments/data-table-dropdown.vue";
+import DropdownAction from "~/components/payments/DataTableDropdown.vue";
 import { UIcon } from "#components";
 
 export interface Payment {

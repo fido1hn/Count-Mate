@@ -3,7 +3,7 @@ import { onMounted, computed, ref } from "vue";
 import { columns as originalColumns } from "./payments/columns";
 import type { ColumnDef } from "@tanstack/vue-table";
 import type { Payment } from "./payments/columns";
-import DataTable from "./payments/data-table.vue";
+import DataTable from "./payments/DataTable.vue";
 
 const data = ref<Payment[]>([]);
 

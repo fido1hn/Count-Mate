@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.18.4",
+    "@popperjs/core": "^2.11.8",
     "@radix-icons/vue": "^1.0.0",
     "@tanstack/vue-table": "^8.19.3",
     "@unovis/ts": "^1.4.3",
@@ -27,7 +28,8 @@
     "v-calendar": "^3.1.2",
     "vue": "^3.4.35",
     "vue-chartjs": "^5.3.1",
-    "vue-router": "^4.4.2"
+    "vue-router": "^4.4.2",
+    "vue-screen-utils": "1.0.0-beta.13"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
