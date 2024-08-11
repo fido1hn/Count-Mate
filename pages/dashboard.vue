@@ -62,7 +62,7 @@
           class="min-w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
-            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
               Today's revenue
             </p>
             <UIcon
@@ -91,7 +91,7 @@
           class="min-w-36 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
-            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
               Today's orders
             </p>
             <UIcon
@@ -120,7 +120,7 @@
           class="min-w-60 rounded-lg border border-gray-300 p-5 dark:border-gray-700"
         >
           <div class="mb-3 flex justify-between">
-            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
               Avg. order value
             </p>
             <UIcon

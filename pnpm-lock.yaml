@@ -93,9 +93,15 @@ importers:
       '@nuxtjs/tailwindcss':
         specifier: ^6.12.1
         version: 6.12.1(magicast@0.3.4)(rollup@4.20.0)
+      '@supabase/supabase-js':
+        specifier: ^2.45.1
+        version: 2.45.1
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       nuxt:
         specifier: ^3.12.4
         version: 3.12.4(@parcel/watcher@2.4.1)(@types/node@22.1.0)(ioredis@5.4.1)(magicast@0.3.4)(rollup@4.20.0)(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.1.0)(terser@5.31.5))

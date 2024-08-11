@@ -1,3 +1,9 @@
+<template>
+  <div class="py-5">
+    <DataTable :columns="columns" :data="data" />
+  </div>
+</template>
+
 <script setup lang="ts">
 import { onMounted, computed, ref } from "vue";
 import { columns as originalColumns } from "./payments/columns";
@@ -11,14 +17,14 @@ const isMobile = ref(false);
 
 // Function to check if the screen is mobile
 const checkMobile = () => {
+  console.log("Ran checkMobile function now");
   isMobile.value = window.innerWidth < 768; // Adjust this breakpoint as needed
 };
 
-// Set up event listener for resize
-if (typeof window !== "undefined") {
-  checkMobile();
+onMounted(() => {
+  checkMobile(); // Initial check
   window.addEventListener("resize", checkMobile);
-}
+});
 
 onUnmounted(() => {
   window.removeEventListener("resize", checkMobile);
@@ -26,16 +32,21 @@ onUnmounted(() => {
 
 // Compute columns based on screen size
 const columns = computed(() => {
+  console.log("Ran columns regeneration function");
   if (isMobile.value) {
     // Filter out the date column on mobile
-    return originalColumns.filter((col: ColumnDef<Payment>) => {
+    const mobileColumns = originalColumns.filter((col: ColumnDef<Payment>) => {
       if ("accessorKey" in col) {
         return col.accessorKey !== "date";
       }
       // Keep all other columns, including those without accessorKey
       return true;
     });
+
+    console.log("Mobile Columns", mobileColumns);
+    return mobileColumns;
   }
+
   return originalColumns;
 });
 
@@ -148,9 +159,3 @@ onMounted(async () => {
   data.value = await getData();
 });
 </script>
-
-<template>
-  <div class="py-5">
-    <DataTable :columns="columns" :data="data" />
-  </div>
-</template>
