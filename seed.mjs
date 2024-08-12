@@ -1,8 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 import { faker } from "@faker-js/faker";
+import { getDaysInMonth } from "date-fns";
 import "dotenv/config";
 
-// Init
+// Init supabase client
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY,
@@ -23,7 +24,9 @@ if (!testUser) {
 }
 
 async function deleteData() {
-  // Delete existing data
+  /* 
+  Delete all existing data in the transactions table
+  */
   const { error: deleteError } = await supabase
     .from("transactions")
     .delete()
@@ -33,71 +36,73 @@ async function deleteData() {
     console.error("Error deleting existing data:", deleteError);
     return;
   }
+
+  console.log("All data in the DB table deleted.");
+
+  return;
 }
 
 async function seedTransactions() {
+  /*
+  Seed transactions in the database to cover 1 calender year
+  */
   let transactions = [];
 
-  for (
-    let year = new Date().getFullYear();
-    year > new Date().getFullYear() - 2;
-    year--
-  ) {
-    for (let i = 0; i < 10; i++) {
-      const date = new Date(
-        year,
-        faker.number.int({ min: 0, max: 11 }),
-        faker.number.int({ min: 1, max: 28 }),
-      );
+  const currentYear = new Date().getFullYear();
 
-      let type, category;
-      const typeBias = Math.random();
+  function generateRandomTimestamp(year, month, day) {
+    // Generate random hour (0-23)
+    const hour = Math.floor(Math.random() * 24);
 
-      if (typeBias < 0.85) {
-        type = "Expense";
-        category = faker.helpers.arrayElement(categories); // Category only for 'Expense'
-      } else if (typeBias < 0.95) {
-        type = "Income";
-      } else {
-        type = faker.helpers.arrayElement(["Saving", "Investment"]);
+    // Generate random minute (0-59)
+    const minute = Math.floor(Math.random() * 60);
+
+    // Generate random second (0-59)
+    const second = Math.floor(Math.random() * 60);
+
+    // Generate random millisecond (0-999)
+    const millisecond = Math.floor(Math.random() * 1000);
+
+    // Create and return the Date object
+    console.log(new Date(year, month, day, hour, minute, second, millisecond));
+    return new Date(year, month, day, hour, minute, second, millisecond);
+  }
+
+  for (let month = 0; month < 12; month++) {
+    let noOfDaysInMonth = getDaysInMonth(new Date(currentYear, month));
+
+    for (let day = 1; day <= noOfDaysInMonth; day++) {
+      for (let i = 0; i < 30; i++) {
+        let transaction = {
+          amount: faker.finance.amount({ min: 1000, max: 20500, dec: 0 }),
+          payment_type: Math.random() > 0.5 ? "Card" : "Transfer",
+          created_at: generateRandomTimestamp(currentYear, month, day),
+          user_id: testUser.id,
+        };
+
+        transactions.push(transaction);
       }
-
-      let amount;
-      switch (type) {
-        case "Income":
-          amount = faker.number.int({ min: 2000, max: 5000 });
-          break;
-        case "Expense":
-          amount = faker.number.int({ min: 100, max: 1000 });
-          break;
-        case "Saving":
-        case "Investment":
-          amount = faker.number.int({ min: 5000, max: 10000 });
-          break;
-        default:
-          amount = 0;
-      }
-
-      transactions.push({
-        created_at: date,
-        amount,
-        type,
-        description: faker.lorem.sentence(),
-        category: type === "Expense" ? category : null, // Category only for 'Expense'
-        user_id: user,
-      });
     }
   }
 
-  const { error: insertError } = await supabase
-    .from("transactions")
-    .upsert(transactions);
+  console.log("Done generating all transactions!");
+  console.log("Sending transactions to supabase!");
 
-  if (insertError) {
-    console.error("Error inserting data:", insertError);
-  } else {
-    console.log("Data inserted successfully.");
-  }
+  // const { error: insertError } = await supabase
+  //   .from("transactions")
+  //   .upsert(transactions);
+
+  // if (insertError) {
+  //   console.error("Error inserting data:", insertError);
+  // } else {
+  //   console.log("Data inserted successfully.");
+  // }
+
+  return;
 }
 
-// seedTransactions().catch(console.error);
+if (process.argv[2] === "--import") {
+  seedTransactions().catch(console.error);
+} else if (process.argv[2] === "--delete") {
+  deleteData();
+}
