@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen flex-col p-5">
+  <div class="h-dvh flex-col p-5">
     <div class="mb-4 flex items-center gap-3">
       <img
         src="/public/icon.png"

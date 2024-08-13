@@ -81,6 +81,32 @@
   }
 }
 
+@layer utilities {
+  .custom-box-background {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .custom-box-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, grey 1px, transparent 1px),
+      linear-gradient(to bottom, grey 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.2;
+    z-index: 1;
+  }
+
+  .custom-box-background > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
