@@ -98,12 +98,31 @@
       linear-gradient(to bottom, grey 1px, transparent 1px);
     background-size: 80px 80px;
     opacity: 0.2;
-    z-index: 1;
+    z-index: 0;
   }
 
   .custom-box-background > * {
     position: relative;
     z-index: 2;
+  }
+
+  .radial-gradient-background {
+    position: relative;
+  }
+
+  .radial-gradient-background::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at top center,
+      transparent 0%,
+      var(--gradient-color) 100%
+    );
+    z-index: 1;
   }
 }
 

@@ -1,11 +1,9 @@
 <template>
   <div>
-    <div class="custom-box-background h-screen">
-      <DesktopTopNavBar class="border border-green-400" />
+    <div class="custom-box-background radial-gradient-background h-screen">
+      <DesktopTopNavBar />
       <section class="flex flex-col items-center">
-        <div
-          class="mt-16 flex max-w-7xl flex-col items-center justify-center border border-red-500"
-        >
+        <div class="mt-16 flex max-w-7xl flex-col items-center justify-center">
           <h1 class="text-center text-5xl font-semibold">
             Beautiful analytics to grow smarter
           </h1>
