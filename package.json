@@ -11,6 +11,9 @@
     "seed": "node seed.mjs"
   },
   "dependencies": {
+    "@iconify-json/fa-brands": "^1.1.9",
+    "@iconify-json/simple-icons": "^1.1.113",
+    "@iconify-json/tabler": "^1.1.120",
     "@nuxt/ui": "^2.18.4",
     "@popperjs/core": "^2.11.8",
     "@radix-icons/vue": "^1.0.0",
