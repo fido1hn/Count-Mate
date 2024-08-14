@@ -13,6 +13,8 @@
     </div>
 
     <FeaturesSection />
+
+    <TestimonialSection />
   </div>
 </template>
 
