@@ -3,7 +3,7 @@
     <section class="bg-[#F9FAFB] p-28 dark:bg-[#161B26]">
       <div class="flex flex-col items-center">
         <img src="/quotient.svg" alt="Quotient company logo" class="mb-8" />
-        <h3 class="mb-7 w-10/12 text-center text-3xl font-medium">
+        <h3 class="mb-8 w-10/12 text-center text-3xl font-medium">
           We've been using Finace tracker for all our terminals and can't
           imagine working around it.
         </h3>

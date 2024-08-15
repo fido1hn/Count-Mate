@@ -49,7 +49,7 @@
       </div>
 
       <div
-        class="flex flex-col items-center rounded-2xl bg-[#F9FAFB] p-7 dark:bg-[#161B26]"
+        class="flex flex-col items-center rounded-2xl bg-[#F9FAFB] p-10 dark:bg-[#161B26]"
       >
         <div class="mb-6 flex items-end">
           <NuxtImg
