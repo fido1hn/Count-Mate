@@ -1,17 +1,33 @@
 <template>
   <div>
-    <section class="p-28">
+    <section class="px-5 py-14 lg:px-10 lg:py-28">
       <div class="flex flex-col justify-center">
         <h2
-          class="mb-9 text-center text-base font-black uppercase text-gray-600"
+          class="mb-10 text-center text-[.7rem] font-black uppercase text-gray-600 sm:text-sm md:text-lg"
         >
           As featured in
         </h2>
         <div class="flex items-center justify-around">
-          <img src="/business-insider.svg" alt="Company Logo" />
-          <img src="/wired.svg" alt="Company Logo" />
-          <img src="/techcrunch.svg" alt="Company Logo" />
-          <img src="/the-guardian.svg" alt="Company Logo" />
+          <img
+            src="/business-insider.svg"
+            alt="Company Logo"
+            class="w-16 min-[500px]:w-20 sm:w-28 md:w-36 lg:w-auto"
+          />
+          <img
+            src="/wired.svg"
+            alt="Company Logo"
+            class="w-16 min-[500px]:w-20 sm:w-28 md:w-36 lg:w-auto"
+          />
+          <img
+            src="/techcrunch.svg"
+            alt="Company Logo"
+            class="w-20 min-[450px]:w-24 min-[500px]:w-28 sm:w-32 md:w-48 lg:w-auto"
+          />
+          <img
+            src="/the-guardian.svg"
+            alt="Company Logo"
+            class="w-16 min-[500px]:w-20 sm:w-28 md:w-36 lg:w-auto"
+          />
         </div>
       </div>
     </section>
