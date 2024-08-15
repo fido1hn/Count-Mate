@@ -51,7 +51,7 @@
           src="user-12_oit7uw.jpg"
           width="48"
           :modifiers="{ roundCorner: 'max' }"
-          class="-mr-3"
+          class="-mr-3 rounded-full"
         />
         <NuxtImg
           provider="cloudinary"
@@ -65,7 +65,7 @@
           src="user-11_kt7em9.jpg"
           width="48"
           :modifiers="{ roundCorner: 'max' }"
-          class="-ml-3"
+          class="-ml-3 rounded-full"
         />
       </div>
 
