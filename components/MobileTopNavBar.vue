@@ -23,7 +23,7 @@
         >
           <template #header>
             <UButton
-              color="gray"
+              color="primary"
               variant="ghost"
               size="sm"
               icon="i-heroicons-x-mark-20-solid"
