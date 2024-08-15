@@ -1,8 +1,8 @@
 <template>
-  <section class="px-28 pb-24">
-    <div class="flex justify-between">
+  <section class="px-5 pb-16 lg:px-28 lg:pb-24">
+    <div class="flex flex-col gap-5 md:flex-row md:justify-between">
       <div>
-        <div class="mb-3 flex items-center gap-1.5 pl-2">
+        <div class="mb-5 flex items-center gap-1.5 pl-0 md:mb-3 md:pl-2">
           <img src="/icon.png" alt="Website Logo" class="h-8 w-8" />
           <p class="w-full text-lg font-semibold">Finance Tracker</p>
         </div>
@@ -10,26 +10,32 @@
         <UHorizontalNavigation
           :links="links"
           :ui="{
-            wrapper: 'w-fit',
-            container: 'gap-4',
-            base: 'font-semibold',
+            wrapper: 'md:w-fit',
+            container: 'grid grid-cols-2 w-full md:flex md:gap-4',
+            base: 'font-semibold py-3 md:py-3.5',
             inactive: 'text-gray-700',
           }"
         />
       </div>
 
-      <div class="flex flex-col justify-between">
+      <div class="flex flex-col gap-5 md:justify-between">
         <p class="mt-2 text-base font-semibold">Stay up to date</p>
-        <div class="flex items-center gap-4">
-          <UInput placeholder="Enter your email" size="sm" />
-          <UButton label="Subscribe" size="sm" />
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:gap-4">
+          <UInput placeholder="Enter your email" size="md" />
+          <UButton
+            label="Subscribe"
+            size="md"
+            :ui="{ base: 'justify-center' }"
+          />
         </div>
       </div>
     </div>
 
     <UDivider class="my-12" />
 
-    <div class="flex items-center justify-between">
+    <div
+      class="flex flex-col items-center gap-5 md:flex-row md:justify-between"
+    >
       <p class="text-sm text-gray-600 dark:text-gray-400">
         &copy; 2024 Finance Tracker. All rights reserved
       </p>
@@ -68,6 +74,7 @@ const links = [
   },
   {
     label: "Privacy",
+    to: "/privacy",
   },
 ];
 </script>
