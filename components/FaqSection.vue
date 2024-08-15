@@ -1,13 +1,15 @@
 <template>
-  <section class="space-y-14 p-28">
+  <section class="space-y-14 px-5 py-20 lg:p-28">
     <div class="text-center">
-      <h4 class="mb-4 text-3xl font-semibold">Frequently asked questions</h4>
-      <p class="text-gray-600 dark:text-gray-400">
+      <h4 class="mb-4 text-2xl font-semibold md:text-3xl">
+        Frequently asked questions
+      </h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
         Everything you need to know about the product and billing
       </p>
     </div>
 
-    <div class="container mx-auto max-w-3xl">
+    <div class="container mx-auto max-w-3xl p-0">
       <UAccordion
         :items="items"
         color="white"
@@ -70,7 +72,7 @@
       </div>
 
       <p class="mb-4 text-lg font-semibold">Still have questions ?</p>
-      <p class="mb-7 text-gray-600 dark:text-gray-400">
+      <p class="mb-7 text-center text-gray-600 dark:text-gray-400">
         Can't find the answer you're looking for? Please chat our friendly team.
       </p>
 
