@@ -19,9 +19,9 @@
           icon="i-heroicons-play-circle"
           variant="solid"
           color="white"
-          size="xl"
+          size="lg"
         />
-        <UButton label="Sign up" variant="solid" color="primary" size="xl" />
+        <UButton label="Sign up" variant="solid" color="primary" size="lg" />
       </div>
     </div>
     <div class="mt-16 flex justify-center">

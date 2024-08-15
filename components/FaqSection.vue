@@ -76,7 +76,7 @@
         Can't find the answer you're looking for? Please chat our friendly team.
       </p>
 
-      <UButton label="Get in touch" size="xl" />
+      <UButton label="Get in touch" size="md" />
     </div>
   </section>
 </template>
