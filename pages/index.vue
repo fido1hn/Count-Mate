@@ -15,6 +15,8 @@
     <FeaturesSection />
 
     <TestimonialSection />
+
+    <FaqSection />
   </div>
 </template>
 

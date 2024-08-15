@@ -88,16 +88,6 @@ async function seedTransactions() {
   console.log("Done generating all transactions!");
   console.log("Sending transactions to supabase!");
 
-  // const { error: insertError } = await supabase
-  //   .from("transactions")
-  //   .upsert(transactions);
-
-  // if (insertError) {
-  //   console.error("Error inserting data:", insertError);
-  // } else {
-  //   console.log("Data inserted successfully.");
-  // }
-
   return;
 }
 
