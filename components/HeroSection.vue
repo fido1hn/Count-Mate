@@ -2,11 +2,13 @@
   <div>
     <section class="flex flex-col items-center">
       <div class="mt-16 flex max-w-7xl flex-col items-center justify-center">
-        <h1 class="text-center text-5xl font-semibold">
+        <h1
+          class="px-3 text-center text-2xl font-semibold sm:text-3xl md:text-4xl lg:text-5xl"
+        >
           Beautiful analytics to grow smarter
         </h1>
         <p
-          class="mt-4 w-3/4 text-center font-medium text-gray-500 dark:text-gray-400"
+          class="mt-4 w-3/4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 md:text-base"
         >
           Powerful transactions recording and financial reports to help you
           understand your business metrics, gain an edge and never lose your
@@ -25,8 +27,8 @@
       </div>
       <div class="mt-16 flex justify-center">
         <img
-          src="/public/macbook-pro.png"
-          class="w-[535px]"
+          src="/macbook-pro.png"
+          class="w-[320px] sm:w-[450px] md:w-[535px]"
           alt="Macbook Pro Image of The Dashboard"
         />
       </div>

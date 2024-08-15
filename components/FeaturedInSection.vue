@@ -3,7 +3,7 @@
     <section class="px-5 py-14 lg:px-10 lg:py-28">
       <div class="flex flex-col justify-center">
         <h2
-          class="mb-10 text-center text-[.7rem] font-black uppercase text-gray-600 sm:text-sm md:text-lg"
+          class="mb-10 text-center text-[.7rem] font-black uppercase text-gray-600 sm:text-sm"
         >
           As featured in
         </h2>
