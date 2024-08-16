@@ -22,8 +22,20 @@
       }"
     />
     <div class="flex items-center justify-center gap-4">
-      <UButton color="gray" variant="ghost" size="md" label="Log in" />
-      <UButton color="primary" variant="solid" size="md" label="Sign up" />
+      <UButton
+        to="/login"
+        color="gray"
+        variant="ghost"
+        size="md"
+        label="Log in"
+      />
+      <UButton
+        to="/login"
+        color="primary"
+        variant="solid"
+        size="md"
+        label="Sign up"
+      />
     </div>
   </div>
 </template>
@@ -32,6 +44,7 @@
 const links = [
   {
     label: "Home",
+    to: "/",
   },
   {
     label: "Products",

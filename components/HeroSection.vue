@@ -21,7 +21,13 @@
           color="white"
           size="lg"
         />
-        <UButton label="Sign up" variant="solid" color="primary" size="lg" />
+        <UButton
+          to="/login"
+          label="Sign up"
+          variant="solid"
+          color="primary"
+          size="lg"
+        />
       </div>
     </div>
     <div class="mt-16 flex justify-center">
