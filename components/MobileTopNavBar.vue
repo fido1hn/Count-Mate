@@ -44,8 +44,9 @@
           </template>
 
           <UVerticalNavigation
+            v-if="isLoggedIn"
             @click="isOpen = false"
-            :links="links"
+            :links="loggedInLinks"
             :ui="{
               padding: 'py-2',
               font: 'font-meduim',
@@ -60,7 +61,25 @@
             class="items-center"
           />
 
-          <template #footer>
+          <UVerticalNavigation
+            v-else
+            @click="isOpen = false"
+            :links="loggedOutLinks"
+            :ui="{
+              padding: 'py-2',
+              font: 'font-meduim',
+              size: 'text-lg',
+              base: 'gap-3',
+              inactive: 'text-gray-700 dark:text-gray-300',
+              icon: {
+                inactive: 'text-gray-500',
+                base: 'h-6 w-6',
+              },
+            }"
+            class="items-center"
+          />
+
+          <template #footer v-if="isLoggedIn">
             <div class="flex items-center justify-between">
               <div class="flex gap-4">
                 <img
@@ -90,8 +109,11 @@
 <script lang="ts" setup>
 const isOpen = ref(false);
 const supabase = useSupabaseClient();
+const user = useSupabaseUser();
 
-const links = [
+const isLoggedIn = computed(() => !!user.value);
+
+const loggedInLinks = [
   [
     {
       label: "Home",
@@ -132,6 +154,21 @@ const links = [
     {
       label: "Settings",
       icon: "i-heroicons-cog-6-tooth",
+    },
+  ],
+];
+
+const loggedOutLinks = [
+  [
+    {
+      label: "Login",
+      icon: "i-heroicons-arrow-left-on-rectangle-20-solid",
+      to: "/login",
+    },
+    {
+      label: "Sign Up",
+      icon: "i-heroicons-user-plus",
+      to: "/signup",
     },
   ],
 ];

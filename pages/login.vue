@@ -240,6 +240,8 @@ async function onSubmitLogin() {
         title: "Success",
         description: "Login successful!",
       });
+      // Needs a better approach for redirection after successful login
+      window.location.href = "/dashboard";
     }
   } finally {
     pending.value = false;
