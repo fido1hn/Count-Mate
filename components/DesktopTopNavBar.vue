@@ -11,6 +11,7 @@
         <p class="w-full text-lg font-semibold">Finance Tracker</p>
       </div>
     </ULink>
+
     <UHorizontalNavigation
       :links="links"
       class="mr-auto"
@@ -21,7 +22,8 @@
         inactive: 'text-gray-700',
       }"
     />
-    <div class="flex items-center justify-center gap-4">
+
+    <div class="flex items-center justify-center gap-4" v-if="!isLoggedIn">
       <UButton
         to="/login"
         color="gray"
@@ -37,10 +39,24 @@
         label="Sign up"
       />
     </div>
+
+    <div class="flex items-center justify-center gap-4" v-else>
+      <UButton
+        to="/dashboard"
+        color="primary"
+        variant="solid"
+        size="md"
+        label="Dashboard"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+const user = useSupabaseUser();
+
+const isLoggedIn = computed(() => !!user.value);
+
 const links = [
   {
     label: "Home",
