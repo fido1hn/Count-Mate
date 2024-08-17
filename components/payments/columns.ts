@@ -72,7 +72,7 @@ export const columns: ColumnDef<Payment>[] = [
         payment_method.charAt(0).toUpperCase() + payment_method.slice(1);
 
       const icon =
-        payment_method === "transfer"
+        payment_method === "Transfer"
           ? "i-solar-transfer-horizontal-linear"
           : "i-heroicons-credit-card";
 

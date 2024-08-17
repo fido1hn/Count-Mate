@@ -2,6 +2,10 @@
 
 Finance tracker allows POS agents keep track of daily transactions on the go, and get finiancial reports.
 
+## Technologies include
+
+Vue/Nuxt, Tailwind CSS, Supabase, Nuxt UI, Shadcn-Vue,
+
 ## Setup
 
 Make sure to install the dependencies:
