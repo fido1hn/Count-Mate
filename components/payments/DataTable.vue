@@ -100,7 +100,7 @@ const table = useVueTable({
       </Button>
 
       <div class="flex items-center">
-        <!-- Adding this below div breaks chrome(adds a second scrollbar) but not firefox -->
+        <!-- Adding this below div breaks chrome(adds a second scrollbar) but does not break firefox -->
         <!-- <div class="flex items-center space-x-2">
           <p class="text-sm font-medium">Rows per page</p>
           <Select

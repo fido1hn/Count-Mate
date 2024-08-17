@@ -4,7 +4,8 @@
       <UFormGroup
         label="Current avatar"
         class="w-full"
-        help="This would be blank by default">
+        help="This would be blank by default"
+      >
         <UAvatar :src="url" size="3xl" />
       </UFormGroup>
     </div>
@@ -14,7 +15,8 @@
         label="New avatar"
         class="w-full"
         name="avatar"
-        help="After choosing an image click Save to actually upload the new avatar">
+        help="After choosing an image click Save to actually upload the new avatar"
+      >
         <UInput type="file" ref="fileInput" />
       </UFormGroup>
     </div>
@@ -26,7 +28,8 @@
       label="Save"
       :loading="uploading"
       :disabled="uploading"
-      @click="saveAvatar" />
+      @click="saveAvatar"
+    />
   </div>
 </template>
 
@@ -41,17 +44,15 @@ const { url } = useAvatarUrl();
 const uploading = ref(false);
 const fileInput = ref(); // Reference to an input with ref="fileInput" attribute
 
-console.log(user.value);
-
 const saveAvatar = async () => {
   // 1. Get the uploaded file
   const file = fileInput.value.input.files[0];
 
   //    a) If no file uploaded, show toast error
-  if (!file) return toastError({ title: 'Select a file to upload first' });
+  if (!file) return toastError({ title: "Select a file to upload first" });
 
   // 2. Generate the new filename
-  const fileExt = file.name.split('.')[1];
+  const fileExt = file.name.split(".")[1];
   const fileName = `${Math.random()}.${fileExt}`;
 
   try {
@@ -62,7 +63,7 @@ const saveAvatar = async () => {
 
     // 2. Upload the image to avatars bucket
     const { error } = await supabase.storage
-      .from('avatars')
+      .from("avatars")
       .upload(fileName, file);
 
     if (error) throw error;
@@ -77,7 +78,7 @@ const saveAvatar = async () => {
     // 4. (OPTIONALLY) remove the old avatar file
     if (currentAvatarUrl) {
       const { error } = await supabase.storage
-        .from('avatars')
+        .from("avatars")
         .remove([currentAvatarUrl]);
       if (error) throw error;
     }
@@ -86,11 +87,11 @@ const saveAvatar = async () => {
     fileInput.value.input.value = null;
 
     toastSuccess({
-      title: 'Avatar uploaded',
+      title: "Avatar uploaded",
     });
   } catch (error) {
     toastError({
-      title: 'Error uploading avatar',
+      title: "Error uploading avatar",
       description: error.message,
     });
   } finally {

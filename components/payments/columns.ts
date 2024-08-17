@@ -42,21 +42,16 @@ export const columns: ColumnDef<Payment>[] = [
         "Time",
       ),
     cell: ({ row }) => {
-      // Convert ISO time to a Date object
-      const time = new Date(row.getValue("time"));
+      const time = String(row.getValue("time"));
 
-      // Extract hours and minutes from the Date object
-      const hours = time.getHours();
-      const minutes = time.getMinutes();
+      const hours = parseInt(time.split(":")[0]);
+      const minutes = time.split(":")[1];
 
-      // Check if it's morning or afternoon/evening
       const period = hours < 12 ? "am" : "pm";
 
-      // Format hours and minutes with leading zeros if necessary
       const formattedHours = (hours % 12 || 12).toString();
       const formattedMinutes = minutes.toString().padStart(2, "0");
 
-      // Combine hours, minutes, and period
       const formattedTime = `${formattedHours}:${formattedMinutes} ${period}`;
 
       return h("div", { class: "text-left font-medium" }, formattedTime);
