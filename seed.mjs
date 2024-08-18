@@ -30,7 +30,7 @@ async function deleteData() {
   const { error: deleteError } = await supabase
     .from("transactions")
     .delete()
-    .gte("id", 0);
+    .eq("user_id", testUser.id);
 
   if (deleteError) {
     console.error("Error deleting existing data:", deleteError);
