@@ -1,21 +1,17 @@
 <template>
   <div class="py-5">
-    <DataTable :columns="columns" :data="data" />
+    <DataTable :columns="columns" :data="props.data" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, computed, ref } from "vue";
-import { startOfDay, endOfDay } from "date-fns";
 import { columns as originalColumns } from "./payments/columns";
 import type { ColumnDef } from "@tanstack/vue-table";
 import type { Payment } from "./payments/columns";
 import DataTable from "./payments/DataTable.vue";
-import { transformTransaction } from "~/lib/utils";
 
-const supabase = useSupabaseClient();
-
-const data = ref<Payment[]>([]);
+const props = defineProps(["data"]);
 
 const isMobile = ref(false);
 
@@ -51,29 +47,5 @@ const columns = computed(() => {
   }
 
   return originalColumns;
-});
-
-async function getData(): Promise<Payment[]> {
-  // Fetch data from Supabase
-  const today = new Date();
-  const startOfToday = startOfDay(today).toISOString();
-  const endOfToday = endOfDay(today).toISOString();
-
-  const { data, error } = await supabase
-    .from("transactions")
-    .select()
-    .gte("created_at", startOfToday)
-    .lt("created_at", endOfToday);
-
-  if (error) {
-    console.log("Error fetching transactions:", error);
-    return [];
-  }
-
-  return (data || []).map(transformTransaction);
-}
-
-onMounted(async () => {
-  data.value = await getData();
 });
 </script>

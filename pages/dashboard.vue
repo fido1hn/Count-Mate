@@ -100,7 +100,7 @@
             />
           </div>
           <div class="flex items-center justify-between gap-3">
-            <p class="text-3xl font-semibold">14</p>
+            <p class="text-3xl font-semibold">{{ transactionCount }}</p>
             <div
               class="flex items-center rounded-full border border-green-300 bg-green-100 px-1 dark:border-green-700 dark:bg-green-900"
             >
@@ -162,18 +162,32 @@
             @click="isOpen = true"
           />
         </div>
-        <TransactionTable />
+        <TransactionTable :data="transactions" />
       </div>
     </section>
   </div>
 </template>
 
 <script lang="js" setup>
-import { format } from "date-fns";
+import { format, startOfDay, endOfDay } from "date-fns";
+
+const today = new Date();
+const startOfToday = startOfDay(today).toISOString();
+const endOfToday = endOfDay(today).toISOString();
+
+const current = reactive({
+  from: startOfToday,
+  to: endOfToday,
+});
 
 useHead({
   title: "Dashboard",
 });
+
+const { pending, refresh, transactions, transactionCount, transactionTotal } =
+  useFetchTransactions(current);
+
+await refresh();
 
 const date = ref(new Date());
 const isOpen = ref(false);
