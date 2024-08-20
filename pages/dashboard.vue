@@ -71,7 +71,7 @@
             />
           </div>
           <div class="flex items-center justify-between gap-3">
-            <p class="text-3xl font-semibold">₦128,000</p>
+            <p class="text-3xl font-semibold">{{ totalAmountToday }}</p>
             <div
               class="flex items-center rounded-full border border-green-300 bg-green-100 px-1 dark:border-green-700 dark:bg-green-900"
             >
@@ -188,6 +188,11 @@ const { pending, refresh, transactions, transactionCount, transactionTotal } =
   useFetchTransactions(current);
 
 await refresh();
+
+const totalAmountToday = computed(() => {
+  const currency = useCurrency(transactionTotal.value);
+  return currency;
+});
 
 const date = ref(new Date());
 const isOpen = ref(false);
