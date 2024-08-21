@@ -1,6 +1,6 @@
 <template>
   <div class="py-5">
-    <UTable :columns="columns" :rows="transactions">
+    <UTable :columns="columns" :rows="rows">
       <template #date-data="{ row }">
         <span>{{ formatDate(row.date) }}</span>
       </template>
@@ -9,10 +9,10 @@
         <span>{{ formatTime(row.time) }}</span>
       </template>
 
-      <template #payed_with-data="{ row }">
+      <template #payment_method-data="{ row }">
         <div class="flex items-center gap-1">
-          <UIcon :name="chooseIcon(row.payed_with)" class="h-4 w-4" />
-          <span class="block">{{ row.payed_with }}</span>
+          <UIcon :name="chooseIcon(row.payment_method)" class="h-4 w-4" />
+          <span class="block">{{ row.payment_method }}</span>
         </div>
       </template>
 
@@ -30,24 +30,53 @@
         </UDropdown>
       </template>
     </UTable>
+
+    <div
+      class="flex justify-end border-t border-gray-200 px-3 py-3.5 dark:border-gray-700"
+    >
+      <UPagination
+        v-model="page"
+        :page-count="pageCount"
+        :total="transactions.length"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { startOfDay, endOfDay } from "date-fns";
+
+const today = new Date();
+const startOfToday = startOfDay(today).toISOString();
+const endOfToday = endOfDay(today).toISOString();
+
+const todayTimeRange = {
+  from: startOfToday,
+  to: endOfToday,
+};
+
+const { pending, refresh, transactions } = useFetchTransactions(todayTimeRange);
+
+await refresh();
+
 type Transaction = {
   date: string;
   time: string;
-  payed_with: string;
+  payment_method: string;
   amount: number;
 };
 
 const columns = [
   {
+    key: "date",
+    label: "Date",
+  },
+  {
     key: "time",
     label: "Time",
   },
   {
-    key: "payed_with",
+    key: "payment_method",
     label: "Payed With",
   },
   {
@@ -59,44 +88,15 @@ const columns = [
   },
 ];
 
-const transactions = [
-  {
-    date: "2024-08-21",
-    time: "12:50:35",
-    payed_with: "Card",
-    amount: 4500,
-  },
-  {
-    date: "2024-08-21",
-    time: "06:32:25",
-    payed_with: "Transfer",
-    amount: 4500,
-  },
-  {
-    date: "2024-08-21",
-    time: "06:32:25",
-    payed_with: "Card",
-    amount: 4500,
-  },
-  {
-    date: "2024-08-21",
-    time: "06:32:25",
-    payed_with: "Transfer",
-    amount: 4500,
-  },
-  {
-    date: "2024-08-21",
-    time: "06:32:25",
-    payed_with: "Card",
-    amount: 4500,
-  },
-  {
-    date: "2024-08-21",
-    time: "06:32:25",
-    payed_with: "Card",
-    amount: 4500,
-  },
-];
+const page = ref(1);
+const pageCount = 10;
+
+const rows = computed(() => {
+  return transactions.value.slice(
+    (page.value - 1) * pageCount,
+    page.value * pageCount,
+  );
+});
 
 const items = (row: Transaction) => [
   [
@@ -120,8 +120,8 @@ function formatAmount(amount: number) {
   return formattedAmount;
 }
 
-function chooseIcon(payed_with: string) {
-  return payed_with === "Transfer"
+function chooseIcon(payment_method: string) {
+  return payment_method === "Transfer"
     ? "i-solar-transfer-horizontal-linear"
     : "i-heroicons-credit-card";
 }
