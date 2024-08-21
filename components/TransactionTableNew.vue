@@ -21,7 +21,7 @@
       </template>
 
       <template #actions-data="{ row }">
-        <UDropdown :items="items(row)">
+        <UDropdown :items="actionItems(row)">
           <UButton
             color="gray"
             variant="ghost"
@@ -36,7 +36,7 @@
     >
       <UPagination
         v-model="page"
-        :page-count="pageCount"
+        :page-count="rowCount"
         :total="transactions.length"
       />
     </div>
@@ -66,7 +66,7 @@ type Transaction = {
   amount: number;
 };
 
-const columns = [
+const originalColumns = [
   {
     key: "date",
     label: "Date",
@@ -89,16 +89,16 @@ const columns = [
 ];
 
 const page = ref(1);
-const pageCount = 10;
+const rowCount = 10;
 
 const rows = computed(() => {
   return transactions.value.slice(
-    (page.value - 1) * pageCount,
-    page.value * pageCount,
+    (page.value - 1) * rowCount,
+    page.value * rowCount,
   );
 });
 
-const items = (row: Transaction) => [
+const actionItems = (row: Transaction) => [
   [
     {
       label: "Edit",
@@ -145,4 +145,35 @@ function formatDate(datestring: string) {
   });
   return formattedDate;
 }
+
+const isMobile = ref(false);
+
+const checkMobile = () => {
+  isMobile.value = window.innerWidth < 768; // breakpoint
+};
+
+onMounted(() => {
+  checkMobile(); // Initial check
+  window.addEventListener("resize", checkMobile);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", checkMobile);
+});
+
+const columns = computed(() => {
+  /*
+  Compute columns based on screen size
+  */
+  if (isMobile.value) {
+    // Filter out the date column on mobile
+    const mobileColumns = originalColumns.filter((col) => {
+      return col.key !== "date";
+    });
+
+    return mobileColumns;
+  }
+
+  return originalColumns;
+});
 </script>
