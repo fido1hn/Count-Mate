@@ -162,7 +162,7 @@
             @click="isOpen = true"
           />
         </div>
-        <TransactionTable :data="transactions" />
+        <TransactionTableNew />
       </div>
     </section>
   </div>

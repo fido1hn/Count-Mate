@@ -53,6 +53,7 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "shadcn-nuxt": "^0.10.4",
     "typescript": "^5.5.4",
+    "vue-mess-detector": "^0.36.0",
     "zod": "^3.23.8"
   }
 }
