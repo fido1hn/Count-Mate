@@ -252,9 +252,14 @@ async function onSubmitLogin() {
   }
 }
 
+const baseUrl = useRuntimeConfig().public.baseUrl;
+
 async function googleSignIn() {
   let { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
+    options: {
+      redirectTo: `${baseUrl}/dashboard`,
+    },
   });
   if (error) {
     toastError({
