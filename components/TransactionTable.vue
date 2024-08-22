@@ -1,6 +1,13 @@
 <template>
   <div class="py-5">
-    <UTable :columns="columns" :rows="rows">
+    <UTable
+      :columns="columns"
+      :rows="rows"
+      :ui="{
+        th: { padding: 'px-2 py-2' },
+        td: { padding: 'px-2 py-2', color: 'text-gray-800 dark:text-gray-200' },
+      }"
+    >
       <template #date-data="{ row }">
         <span>{{ formatDate(row.date) }}</span>
       </template>
