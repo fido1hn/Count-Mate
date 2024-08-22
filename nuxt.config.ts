@@ -8,7 +8,12 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "shadcn-nuxt",
     "@nuxt/image",
+    "@pinia/nuxt",
   ],
+
+  imports: {
+    dirs: ["stores"],
+  },
 
   supabase: {
     redirectOptions: {

@@ -162,7 +162,7 @@
             @click="isOpen = true"
           />
         </div>
-        <TransactionTableNew />
+        <TransactionTable />
       </div>
     </section>
   </div>
@@ -171,28 +171,31 @@
 <script lang="js" setup>
 import { format, startOfDay, endOfDay } from "date-fns";
 
-const today = new Date();
-const startOfToday = startOfDay(today).toISOString();
-const endOfToday = endOfDay(today).toISOString();
-
-const current = reactive({
-  from: startOfToday,
-  to: endOfToday,
-});
-
 useHead({
   title: "Dashboard",
 });
 
-const { pending, refresh, transactions, transactionCount, transactionTotal } =
-  useFetchTransactions(current);
+const today = new Date();
+const startOfToday = startOfDay(today).toISOString();
+const endOfToday = endOfDay(today).toISOString();
 
-await refresh();
+const todayTimeRange = {
+  from: startOfToday,
+  to: endOfToday,
+};
+
+const transactionsStore = useTransactionsStore();
+await transactionsStore.fetchTransactions(todayTimeRange);
+const { transactionCount, transactionTotal } = storeToRefs(transactionsStore);
 
 const totalAmountToday = computed(() => {
-  const currency = useCurrency(transactionTotal.value);
-  return currency;
+  const formattedAmount = useCurrency(transactionTotal.value);
+  return formattedAmount;
 });
+
+function refresh() {
+  transactionsStore.refresh(todayTimeRange);
+}
 
 const date = ref(new Date());
 const isOpen = ref(false);
