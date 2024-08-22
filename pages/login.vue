@@ -74,6 +74,7 @@
               variant="solid"
               size="lg"
               class="mb-6 font-semibold"
+              @click="googleSignIn"
               block
               >Sign up with Google</UButton
             >
@@ -130,6 +131,7 @@
               variant="solid"
               size="lg"
               class="mb-6 font-semibold"
+              @click="googleSignIn"
               block
               >Sign in with Google</UButton
             >
@@ -217,6 +219,8 @@ async function onSubmitSignup() {
         title: "Success",
         description: "Login successful!",
       });
+      // Needs a better approach for redirection after successful login
+      window.location.href = "/dashboard";
     }
   } finally {
     pending.value = false;
@@ -245,6 +249,18 @@ async function onSubmitLogin() {
     }
   } finally {
     pending.value = false;
+  }
+}
+
+async function googleSignIn() {
+  let { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+  });
+  if (error) {
+    toastError({
+      title: "Error authenticating",
+      description: error.message,
+    });
   }
 }
 </script>
