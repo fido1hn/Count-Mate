@@ -2,7 +2,9 @@
   <div class="p-6">
     <h1 class="mb-5 text-3xl font-semibold">Reports</h1>
 
-    <div class="mb-5 flex items-center justify-between">
+    <div
+      class="mb-5 flex flex-col gap-2 md:flex-row md:items-center md:justify-between"
+    >
       <UButtonGroup
         size="md"
         orientation="horizontal"
@@ -44,8 +46,10 @@
       </div>
     </div>
 
-    <div class="mb-9 flex items-start justify-between">
-      <div class="flex items-start gap-5">
+    <div
+      class="mb-9 flex flex-col items-start gap-4 lg:flex-row lg:justify-between lg:gap-0"
+    >
+      <div class="flex w-full flex-col items-start gap-5 lg:flex-row">
         <div>
           <p class="mb-1 text-sm text-gray-600 dark:text-gray-400">MRR</p>
           <div class="flex items-start">
@@ -61,7 +65,7 @@
           </div>
         </div>
         <AreaChart
-          class="h-[200px] w-[750px]"
+          class="h-[200px] lg:w-[750px]"
           index="name"
           :colors="['purple', 'violet']"
           :show-gradiant="true"
