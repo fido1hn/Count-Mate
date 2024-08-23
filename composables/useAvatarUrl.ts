@@ -1,7 +1,9 @@
 export const useAvatarUrl = () => {
-  // Get the current user metadata - containing the avatar image
-  // Public URL of that image
-  // Watch user for changes - display current user image
+  /*
+  Get the current user metadata - containing the avatar image
+  Get the public URL of that image
+  Watch user for changes - display current user image
+  */
 
   const supabase = useSupabaseClient();
   const user = useSupabaseUser();
@@ -10,17 +12,17 @@ export const useAvatarUrl = () => {
     if (!user.value?.user_metadata?.avatar_url) return null;
 
     const { data } = supabase.storage
-      .from('avatars')
+      .from("avatars")
       .getPublicUrl(user.value?.user_metadata?.avatar_url);
 
     return data.publicUrl;
   };
 
-  const url = ref(getPublicUrl());
+  const avatarUrl = ref(getPublicUrl());
 
-  watch(user, () => (url.value = getPublicUrl()), { immediate: true });
+  watch(user, () => (avatarUrl.value = getPublicUrl()), { immediate: true });
 
   return {
-    url,
+    avatarUrl,
   };
 };

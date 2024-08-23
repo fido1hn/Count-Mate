@@ -82,11 +82,7 @@
           <template #footer v-if="isLoggedIn">
             <div class="flex items-center justify-between">
               <div class="flex gap-4">
-                <img
-                  src="/public/evan.jpg"
-                  alt="User Profile image"
-                  class="h-12 w-12 rounded-full"
-                />
+                <UAvatar size="md" :src="avatarUrl" :alt="userFullName" />
                 <div class="">
                   <p class="text-md font-semibold">{{ userFullName }}</p>
                   <p class="text-sm">{{ userEmailAddress }}</p>
@@ -111,6 +107,7 @@ const isOpen = ref(false);
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 const { userFullName, userEmailAddress } = useUserDetails();
+const { avatarUrl } = useAvatarUrl();
 
 const isLoggedIn = computed(() => !!user.value);
 

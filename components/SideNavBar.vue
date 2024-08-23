@@ -40,11 +40,7 @@
     />
 
     <div class="flex gap-3">
-      <img
-        src="/public/evan.jpg"
-        alt="User Profile image"
-        class="h-10 w-10 rounded-full"
-      />
+      <UAvatar size="md" :src="avatarUrl" :alt="userFullName" />
       <div class="max-[1360px]:hidden">
         <p class="text-sm font-semibold">{{ userFullName }}</p>
         <p class="text-sm">{{ userEmailAddress }}</p>
@@ -63,6 +59,7 @@
 <script lang="ts" setup>
 const supabase = useSupabaseClient();
 const { userFullName, userEmailAddress } = useUserDetails();
+const { avatarUrl } = useAvatarUrl();
 
 const links = [
   [
