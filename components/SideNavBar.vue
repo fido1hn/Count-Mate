@@ -46,8 +46,8 @@
         class="h-10 w-10 rounded-full"
       />
       <div class="max-[1360px]:hidden">
-        <p class="text-sm font-semibold">Evan You</p>
-        <p class="text-sm">evan@financetracker.io</p>
+        <p class="text-sm font-semibold">{{ userFullName }}</p>
+        <p class="text-sm">{{ userEmailAddress }}</p>
       </div>
       <UButton
         icon="i-heroicons-arrow-right-on-rectangle-solid"
@@ -62,7 +62,7 @@
 
 <script lang="ts" setup>
 const supabase = useSupabaseClient();
-// const user = useSupabaseUser();
+const { userFullName, userEmailAddress } = useUserDetails();
 
 const links = [
   [

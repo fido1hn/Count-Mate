@@ -88,8 +88,8 @@
                   class="h-12 w-12 rounded-full"
                 />
                 <div class="">
-                  <p class="text-md font-semibold">Evan You</p>
-                  <p class="text-sm">evan@financetracker.io</p>
+                  <p class="text-md font-semibold">{{ userFullName }}</p>
+                  <p class="text-sm">{{ userEmailAddress }}</p>
                 </div>
               </div>
               <UButton
@@ -110,6 +110,7 @@
 const isOpen = ref(false);
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
+const { userFullName, userEmailAddress } = useUserDetails();
 
 const isLoggedIn = computed(() => !!user.value);
 
