@@ -1,6 +1,7 @@
 <template>
   <div class="py-5">
     <UTable
+      :loading="pending"
       :columns="columns"
       :rows="rows"
       :ui="{
@@ -53,7 +54,7 @@
 <script lang="ts" setup>
 import type { UITransaction } from "~/lib/utils";
 const transactionsStore = useTransactionsStore();
-const { transactions } = storeToRefs(transactionsStore);
+const { transactions, pending } = storeToRefs(transactionsStore);
 
 const originalColumns = [
   {
