@@ -7,7 +7,7 @@
       <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
         <UAvatar
           :src="avatarUrl"
-          alt="Avatar"
+          :alt="userFullName"
           size="3xl"
           class="ring ring-white"
           :ui="{ size: { '3xl': 'w-24 h-24 md:w-40 md:h-40' } }"
