@@ -6,7 +6,7 @@
     >
       <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
         <UAvatar
-          src="/evan.jpg"
+          :src="avatarUrl"
           alt="Avatar"
           size="3xl"
           class="ring ring-white"
@@ -21,10 +21,10 @@
           <h2
             class="text-2xl font-semibold text-black dark:text-white md:text-3xl"
           >
-            Evan You
+            {{ userFullName }}
           </h2>
           <p class="text-xs font-normal text-gray-500 md:text-base">
-            testuser@financetracker.io
+            {{ userEmailAddress }}
           </p>
         </div>
       </div>
@@ -51,7 +51,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { userFullName, userEmailAddress } = useUserDetails();
+const { avatarUrl } = useAvatarUrl();
+</script>
 
 <style scoped>
 .gradient-background {
