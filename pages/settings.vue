@@ -1,25 +1,24 @@
 <template>
-  <div class="grid grid-cols-6 gap-8">
-    <UVerticalNavigation :links="links" class="col-span-2" />
-    <div class="col-span-4">
-      <NuxtPage />
-    </div>
+  <div>
+    <div class="gradient-background h-40 w-full md:h-60"></div>
   </div>
 </template>
 
-<script setup>
-const links = [
-  {
-    label: 'Profile',
-    to: '/settings/profile',
-  },
-  {
-    label: 'Avatar',
-    to: '/settings/avatar',
-  },
-  {
-    label: 'Settings',
-    to: '/settings/settings',
-  },
-];
-</script>
+<script setup lang="ts"></script>
+
+<style scoped>
+.gradient-background {
+  background: linear-gradient(
+    140deg,
+    #981ee3,
+    #b74bfe 10% 55%,
+    #f79b76 70%,
+    #fde579 90%
+  );
+}
+@media (max-width: 630px) {
+  .gradient-background {
+    background: linear-gradient(140deg, #b74bfe 50%, #f79b76 70%);
+  }
+}
+</style>

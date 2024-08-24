@@ -102,6 +102,7 @@ const links = [
     {
       label: "Settings",
       icon: "i-heroicons-cog-6-tooth",
+      to: "/settings",
     },
   ],
 ];
