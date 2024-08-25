@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="gradient-background h-40 w-full md:h-60"></div>
+
     <div
-      class="border-1 -mt-16 flex flex-col gap-3 border-green-500 p-5 md:-mt-12 md:flex-row md:items-center md:justify-between"
+      class="-mt-16 flex flex-col gap-3 p-5 md:-mt-12 md:flex-row md:items-center md:justify-between"
     >
       <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
         <UAvatar
@@ -46,6 +47,88 @@
           variant="solid"
           :ui="{ rounded: 'rounded-lg' }"
         />
+      </div>
+    </div>
+
+    <div
+      class="mb-12 mt-5 flex flex-col gap-4 px-5 md:flex-row md:justify-between"
+    >
+      <div>
+        <h4
+          class="text-sm font-semibold text-gray-700 dark:text-gray-300 md:text-lg"
+        >
+          Personal Information
+        </h4>
+        <p
+          class="text-xs font-normal text-gray-600 dark:text-gray-400 md:text-sm"
+        >
+          Update your photo and personal details.
+        </p>
+      </div>
+      <div class="md:w-4/6">
+        <UCard>
+          <UForm>
+            <div class="mb-4 flex flex-col gap-4 md:flex-row">
+              <UFormGroup required size="md" label="First name" class="flex-1">
+                <UInput />
+              </UFormGroup>
+              <UFormGroup required size="md" label="Last name" class="flex-1">
+                <UInput />
+              </UFormGroup>
+            </div>
+
+            <UFormGroup required size="md" label="Email" class="mb-6">
+              <UInput icon="i-heroicons-envelope" />
+            </UFormGroup>
+
+            <div class="flex flex-col gap-4 md:flex-row">
+              <UAvatar :src="avatarUrl" :alt="userFullName" size="2xl" />
+
+              <div
+                class="flex w-full flex-col items-center rounded-xl border-2 border-gray-200 py-4 dark:border-gray-700"
+              >
+                <div
+                  class="mb-2 flex items-center justify-center rounded-xl border-2 border-gray-200 p-2 dark:border-gray-700"
+                >
+                  <UIcon
+                    name="i-solar-cloud-upload-outline"
+                    class="h-5 w-5 text-gray-700 dark:text-gray-300"
+                  />
+                </div>
+
+                <p>
+                  <UButton label="Click to upload" variant="ghost" /><span
+                    class="text-gray-700 dark:text-gray-300"
+                    >or drag and drop</span
+                  >
+                </p>
+                <p class="text-sm text-gray-500">
+                  SVG, PNG, JPG or GIF (max, 800*400px)
+                </p>
+              </div>
+            </div>
+          </UForm>
+
+          <template #footer>
+            <div class="flex items-center justify-end gap-2">
+              <UButton
+                label="Cancel"
+                variant="outline"
+                color="white"
+                :ui="{
+                  rounded: 'rounded-lg',
+                  variant: { outline: 'ring-gray-300 dark:ring-gray-700' },
+                }"
+              />
+              <UButton
+                label="Save changes"
+                :ui="{
+                  rounded: 'rounded-lg',
+                }"
+              />
+            </div>
+          </template>
+        </UCard>
       </div>
     </div>
   </div>
