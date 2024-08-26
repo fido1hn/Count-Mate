@@ -51,7 +51,7 @@
     </div>
 
     <div
-      class="mb-12 mt-5 flex flex-col gap-4 px-5 md:flex-row md:justify-between"
+      class="mb-12 mt-2 flex flex-col gap-4 px-5 md:flex-row md:justify-between"
     >
       <div>
         <h4
@@ -67,7 +67,7 @@
       </div>
       <div class="md:w-4/6">
         <UCard>
-          <UForm>
+          <UForm :schema="PersonalInfoSchema" :state="form">
             <div class="mb-4 flex flex-col gap-4 md:flex-row">
               <UFormGroup required size="md" label="First name" class="flex-1">
                 <UInput />
@@ -135,8 +135,15 @@
 </template>
 
 <script setup lang="ts">
+import { PersonalInfoSchema } from "~/schemas/PersonalInfoSchema";
 const { userFullName, userEmailAddress } = useUserDetails();
 const { avatarUrl } = useAvatarUrl();
+
+const form = reactive({
+  firstName: "",
+  lastName: "",
+  email: "",
+});
 </script>
 
 <style scoped>
