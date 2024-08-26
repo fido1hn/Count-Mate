@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-6">
     <div class="gradient-background h-40 w-full md:h-60"></div>
 
     <div
