@@ -13,6 +13,7 @@ export const useAppToast = () => {
         description,
         icon: "i-heroicons-check-circle",
         color: "green",
+        timeout: 2000,
       });
     },
     toastError: ({ title, description }: Toast) => {
@@ -21,6 +22,7 @@ export const useAppToast = () => {
         description,
         icon: "i-heroicons-exclamation-circle",
         color: "red",
+        timeout: 2000,
       });
     },
   };
