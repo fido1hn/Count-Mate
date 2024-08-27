@@ -5,9 +5,7 @@ export const useRedirectIfAuthenticated = (url = "/") => {
     user,
     (user) => {
       if (user) {
-        // Github issue: https://github.com/nuxt/nuxt/issues/13309
-        // return navigateTo(url);
-        return (window.location.href = url);
+        return navigateTo(url);
       }
     },
     { immediate: true },

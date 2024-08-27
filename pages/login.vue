@@ -195,7 +195,7 @@ const rememberUser = ref(false);
 const pending = ref(false);
 const { toastError, toastSuccess } = useAppToast();
 const supabase = useSupabaseClient();
-useRedirectIfAuthenticated();
+useRedirectIfAuthenticated("/dashboard");
 
 async function onSubmitSignup() {
   pending.value = true;
@@ -219,8 +219,6 @@ async function onSubmitSignup() {
         title: "Success",
         description: "Login successful!",
       });
-      // Needs a better approach for redirection after successful login
-      window.location.href = "/dashboard";
     }
   } finally {
     pending.value = false;
@@ -244,8 +242,6 @@ async function onSubmitLogin() {
         title: "Success",
         description: "Login successful!",
       });
-      // Needs a better approach for redirection after successful login
-      window.location.href = "/dashboard";
     }
   } finally {
     pending.value = false;

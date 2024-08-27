@@ -167,7 +167,7 @@ const loggedOutLinks = [
     {
       label: "Sign Up",
       icon: "i-heroicons-user-plus",
-      to: "/signup",
+      to: "/login",
     },
   ],
 ];

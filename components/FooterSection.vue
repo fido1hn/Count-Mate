@@ -74,7 +74,7 @@ const links = [
   },
   {
     label: "Privacy",
-    to: "/privacy",
+    to: "",
   },
 ];
 </script>
