@@ -65,20 +65,26 @@
           Update your photo and personal details.
         </p>
       </div>
+
+      <!-- Form -->
       <div class="md:w-4/6">
-        <UCard>
-          <UForm :schema="PersonalInfoSchema" :state="form">
+        <UForm
+          :state="state"
+          :schema="PersonalInfoSchema"
+          @submit.prevent="save"
+        >
+          <UCard>
             <div class="mb-4 flex flex-col gap-4 md:flex-row">
               <UFormGroup required size="md" label="First name" class="flex-1">
-                <UInput />
+                <UInput v-model="state.firstName" />
               </UFormGroup>
               <UFormGroup required size="md" label="Last name" class="flex-1">
-                <UInput />
+                <UInput v-model="state.lastName" />
               </UFormGroup>
             </div>
 
             <UFormGroup required size="md" label="Email" class="mb-6">
-              <UInput icon="i-heroicons-envelope" />
+              <UInput icon="i-heroicons-envelope" v-model="state.email" />
             </UFormGroup>
 
             <div class="flex flex-col gap-4 md:flex-row">
@@ -107,28 +113,29 @@
                 </p>
               </div>
             </div>
-          </UForm>
 
-          <template #footer>
-            <div class="flex items-center justify-end gap-2">
-              <UButton
-                label="Cancel"
-                variant="outline"
-                color="white"
-                :ui="{
-                  rounded: 'rounded-lg',
-                  variant: { outline: 'ring-gray-300 dark:ring-gray-700' },
-                }"
-              />
-              <UButton
-                label="Save changes"
-                :ui="{
-                  rounded: 'rounded-lg',
-                }"
-              />
-            </div>
-          </template>
-        </UCard>
+            <template #footer>
+              <div class="flex items-center justify-end gap-2">
+                <UButton
+                  label="Cancel"
+                  variant="outline"
+                  color="white"
+                  :ui="{
+                    rounded: 'rounded-lg',
+                    variant: { outline: 'ring-gray-300 dark:ring-gray-700' },
+                  }"
+                />
+                <UButton
+                  type="submit"
+                  label="Save changes"
+                  :ui="{
+                    rounded: 'rounded-lg',
+                  }"
+                />
+              </div>
+            </template>
+          </UCard>
+        </UForm>
       </div>
     </div>
   </div>
@@ -139,11 +146,16 @@ import { PersonalInfoSchema } from "~/schemas/PersonalInfoSchema";
 const { userFullName, userEmailAddress } = useUserDetails();
 const { avatarUrl } = useAvatarUrl();
 
-const form = reactive({
+const state = ref({
   firstName: "",
   lastName: "",
   email: "",
 });
+
+const save = () => {
+  // Handle successful form submission
+  console.log("Form submitted:", state.value);
+};
 </script>
 
 <style scoped>
