@@ -155,6 +155,8 @@
                 <UButton
                   type="submit"
                   label="Save changes"
+                  :loading="pending"
+                  :disabled="pending"
                   :ui="{
                     rounded: 'rounded-lg',
                   }"
@@ -170,20 +172,16 @@
 
 <script setup lang="ts">
 import { PersonalInfoSchema } from "~/schemas/PersonalInfoSchema";
+const supabase = useSupabaseClient();
 const { userFullName, userEmailAddress } = useUserDetails();
+const { toastSuccess, toastError } = useAppToast();
 const { avatarUrl } = useAvatarUrl();
 
-const firstName = () => {
-  return userFullName.value.split(" ")[0];
-};
-
-const lastName = () => {
-  return userFullName.value.split(" ")[1];
-};
+const pending = ref(false);
 
 const state = ref({
-  firstName: firstName(),
-  lastName: lastName(),
+  firstName: userFullName.value.split(" ")[0],
+  lastName: userFullName.value.split(" ")[1],
   email: userEmailAddress.value,
 });
 
@@ -202,9 +200,35 @@ const handleFileChange = (event: Event) => {
   }
 };
 
-const save = () => {
-  // Handle successful form submission
-  console.log("Form submitted:", state.value);
+const save = async () => {
+  pending.value = true;
+  try {
+    const data = {
+      data: {
+        full_name: state.value.firstName + " " + state.value.lastName,
+      },
+      email: userEmailAddress.value,
+    };
+
+    if (state.value.email !== userEmailAddress.value) {
+      data.email = state.value.email;
+    }
+
+    const { error } = await supabase.auth.updateUser(data);
+    if (error) throw error;
+
+    toastSuccess({
+      title: "Profile updated",
+      description: "Your profile has been updated",
+    });
+  } catch (error: any) {
+    toastError({
+      title: "Error updating profile",
+      description: error.message,
+    });
+  } finally {
+    pending.value = false;
+  }
 };
 </script>
 
