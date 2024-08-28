@@ -2,7 +2,7 @@
   <div class="pb-6">
     <div class="gradient-background h-40 w-full md:h-60"></div>
 
-    <div
+    <section
       class="-mt-16 flex flex-col gap-3 p-5 md:-mt-12 md:flex-row md:items-center md:justify-between"
     >
       <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
@@ -48,9 +48,9 @@
           :ui="{ rounded: 'rounded-lg' }"
         />
       </div>
-    </div>
+    </section>
 
-    <div
+    <section
       class="mb-12 mt-2 flex flex-col gap-4 px-5 md:flex-row md:justify-between"
     >
       <div>
@@ -164,7 +164,7 @@
           </UCard>
         </UForm>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -173,10 +173,18 @@ import { PersonalInfoSchema } from "~/schemas/PersonalInfoSchema";
 const { userFullName, userEmailAddress } = useUserDetails();
 const { avatarUrl } = useAvatarUrl();
 
+const firstName = () => {
+  return userFullName.value.split(" ")[0];
+};
+
+const lastName = () => {
+  return userFullName.value.split(" ")[1];
+};
+
 const state = ref({
-  firstName: "",
-  lastName: "",
-  email: "",
+  firstName: firstName(),
+  lastName: lastName(),
+  email: userEmailAddress.value,
 });
 
 const fileInput = ref<HTMLInputElement | null>(null);
