@@ -121,8 +121,17 @@
                 </div>
 
                 <p>
-                  <UButton label="Click to upload" variant="ghost" /><span
-                    class="text-gray-700 dark:text-gray-300"
+                  <input
+                    type="file"
+                    class="hidden"
+                    ref="fileInput"
+                    @change="handleFileChange"
+                  />
+                  <UButton
+                    label="Click to upload"
+                    variant="ghost"
+                    @click="triggerFileInput"
+                  /><span class="text-gray-700 dark:text-gray-300"
                     >or drag and drop</span
                   >
                 </p>
@@ -169,6 +178,21 @@ const state = ref({
   lastName: "",
   email: "",
 });
+
+const fileInput = ref<HTMLInputElement | null>(null);
+
+const triggerFileInput = () => {
+  fileInput.value?.click();
+};
+
+const handleFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  if (target.files && target.files.length > 0) {
+    const file = target.files[0];
+    // Handle the selected file here
+    console.log("Selected file:", file.name);
+  }
+};
 
 const save = () => {
   // Handle successful form submission
