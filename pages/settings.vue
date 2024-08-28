@@ -75,15 +75,33 @@
         >
           <UCard>
             <div class="mb-4 flex flex-col gap-4 md:flex-row">
-              <UFormGroup required size="md" label="First name" class="flex-1">
+              <UFormGroup
+                required
+                size="md"
+                label="First name"
+                name="firstName"
+                class="flex-1"
+              >
                 <UInput v-model="state.firstName" />
               </UFormGroup>
-              <UFormGroup required size="md" label="Last name" class="flex-1">
+              <UFormGroup
+                required
+                size="md"
+                label="Last name"
+                name="lastName"
+                class="flex-1"
+              >
                 <UInput v-model="state.lastName" />
               </UFormGroup>
             </div>
 
-            <UFormGroup required size="md" label="Email" class="mb-6">
+            <UFormGroup
+              required
+              size="md"
+              label="Email"
+              name="email"
+              class="mb-6"
+            >
               <UInput icon="i-heroicons-envelope" v-model="state.email" />
             </UFormGroup>
 
