@@ -205,7 +205,7 @@ async function onSubmitSignup() {
       password: signupForm.password,
       options: {
         data: {
-          display_name: signupForm.name,
+          full_name: signupForm.name,
         },
       },
     });
