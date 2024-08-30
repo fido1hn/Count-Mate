@@ -39,5 +39,10 @@ export const useTransactionsStore = defineStore({
         (sum, transaction) => sum + transaction.amount,
         0,
       ),
+    transactionAverage(): number {
+      return this.transactionCount > 0
+        ? this.transactionTotal / this.transactionCount
+        : 0;
+    },
   },
 });

@@ -129,7 +129,7 @@
             />
           </div>
           <div class="flex items-center justify-between gap-3">
-            <p class="text-3xl font-semibold">₦115,000</p>
+            <p class="text-3xl font-semibold">{{ averageAmount }}</p>
             <div
               class="flex items-center rounded-full border border-red-300 bg-red-100 px-1 dark:border-red-700 dark:bg-red-900"
             >
@@ -186,12 +186,11 @@ const todayTimeRange = {
 
 const transactionsStore = useTransactionsStore();
 await transactionsStore.fetchTransactions(todayTimeRange);
-const { transactionCount, transactionTotal } = storeToRefs(transactionsStore);
+const { transactionCount, transactionTotal, transactionAverage } =
+  storeToRefs(transactionsStore);
 
-const totalAmountToday = computed(() => {
-  const formattedAmount = useCurrency(transactionTotal.value);
-  return formattedAmount;
-});
+const totalAmountToday = computed(() => useCurrency(transactionTotal.value));
+const averageAmount = computed(() => useCurrency(transactionAverage.value));
 
 function refresh() {
   transactionsStore.refresh(todayTimeRange);
