@@ -107,7 +107,7 @@
 
             <div class="flex flex-col gap-4 md:flex-row">
               <UAvatar
-                :src="previewUrl || avatarUrl"
+                :src="avatarPreviewUrl || avatarUrl"
                 :alt="userFullName"
                 size="2xl"
               />
@@ -181,8 +181,17 @@ const { userFullName, userEmailAddress } = useUserDetails();
 const { toastSuccess, toastError } = useAppToast();
 const { avatarUrl } = useAvatarUrl();
 
+type UpdateUserType = {
+  email?: string;
+  data: {
+    full_name: string;
+    avatar_url?: string;
+  };
+};
+
 const pending = ref(false);
-const previewUrl = ref<string | null>(null);
+const avatarPreviewUrl = ref<string | null>(null);
+const uploadedAvatar = ref<File | null>(null);
 
 const state = ref({
   firstName: userFullName.value.split(" ")[0],
@@ -200,14 +209,15 @@ const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   if (target.files && target.files.length > 0) {
     const file = target.files[0];
-    previewUrl.value = URL.createObjectURL(file);
+    uploadedAvatar.value = file;
+    avatarPreviewUrl.value = URL.createObjectURL(file);
   }
 };
 
 const save = async () => {
   pending.value = true;
   try {
-    const data = {
+    const data: UpdateUserType = {
       data: {
         full_name: state.value.firstName + " " + state.value.lastName,
       },
@@ -216,6 +226,18 @@ const save = async () => {
 
     if (state.value.email !== userEmailAddress.value) {
       data.email = state.value.email;
+    }
+
+    if (uploadedAvatar.value) {
+      // Upload the file to Supabase storage
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("avatars")
+        .upload(`avatar-${Date.now()}.png`, uploadedAvatar.value);
+
+      if (uploadError) throw uploadError;
+
+      // Add the uploaded file path to the data object
+      data.data.avatar_url = uploadData.path;
     }
 
     const { error } = await supabase.auth.updateUser(data);
@@ -236,8 +258,8 @@ const save = async () => {
 };
 
 onBeforeUnmount(() => {
-  if (previewUrl.value) {
-    URL.revokeObjectURL(previewUrl.value);
+  if (avatarPreviewUrl.value) {
+    URL.revokeObjectURL(avatarPreviewUrl.value);
   }
 });
 </script>
