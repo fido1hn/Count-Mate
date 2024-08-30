@@ -8,7 +8,7 @@ export const useUserDetails = () => {
 
   const getUserEmail = () => {
     if (!user.value?.user_metadata?.email) return null;
-    return user.value?.user_metadata?.email;
+    return user.value?.email;
   };
 
   const userFullName = ref(getUserName());
