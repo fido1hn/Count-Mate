@@ -106,7 +106,11 @@
             </UFormGroup>
 
             <div class="flex flex-col gap-4 md:flex-row">
-              <UAvatar :src="avatarUrl" :alt="userFullName" size="2xl" />
+              <UAvatar
+                :src="previewUrl || avatarUrl"
+                :alt="userFullName"
+                size="2xl"
+              />
 
               <div
                 class="flex w-full flex-col items-center rounded-xl border-2 border-gray-200 py-4 dark:border-gray-700"
@@ -178,6 +182,7 @@ const { toastSuccess, toastError } = useAppToast();
 const { avatarUrl } = useAvatarUrl();
 
 const pending = ref(false);
+const previewUrl = ref<string | null>(null);
 
 const state = ref({
   firstName: userFullName.value.split(" ")[0],
@@ -195,8 +200,7 @@ const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   if (target.files && target.files.length > 0) {
     const file = target.files[0];
-    // Handle the selected file here
-    console.log("Selected file:", file.name);
+    previewUrl.value = URL.createObjectURL(file);
   }
 };
 
@@ -230,6 +234,12 @@ const save = async () => {
     pending.value = false;
   }
 };
+
+onBeforeUnmount(() => {
+  if (previewUrl.value) {
+    URL.revokeObjectURL(previewUrl.value);
+  }
+});
 </script>
 
 <style scoped>
