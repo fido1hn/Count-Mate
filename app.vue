@@ -9,6 +9,12 @@
 <script setup lang="ts">
 useHead({
   titleTemplate: "%s - Finance Tracker",
+  meta: [
+    {
+      name: "viewport",
+      content: "maximum-scale=1.0, user-scalable=no",
+    },
+  ],
   link: [
     {
       rel: "apple-touch-icon",
