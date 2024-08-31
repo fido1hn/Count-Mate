@@ -12,7 +12,8 @@ useHead({
   meta: [
     {
       name: "viewport",
-      content: "maximum-scale=1.0, user-scalable=no",
+      content:
+        "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
     },
   ],
   link: [
@@ -46,12 +47,12 @@ body {
 body {
   @apply bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200;
 }
-
+/*
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   select,
   textarea,
   input {
     font-size: 16px !important;
   }
-}
+} */
 </style>
