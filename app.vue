@@ -1,4 +1,5 @@
 <template>
+  <VitePwaManifest />
   <NuxtLayout>
     <NuxtPage />
     <UNotifications />
@@ -26,7 +27,6 @@ useHead({
       sizes: "16x16",
       href: "/favicon-16x16.png",
     },
-    { rel: "manifest", href: "/site.webmanifest" },
   ],
 });
 </script>

@@ -48,6 +48,7 @@
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@pinia/nuxt": "^0.5.4",
     "@supabase/supabase-js": "^2.45.2",
+    "@vite-pwa/nuxt": "^0.10.1",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "nuxt": "^3.13.0",

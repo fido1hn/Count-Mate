@@ -9,7 +9,52 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@nuxt/image",
     "@pinia/nuxt",
+    "@vite-pwa/nuxt",
   ],
+
+  pwa: {
+    registerType: "autoUpdate",
+    manifest: {
+      name: "POS Finance Tracker",
+      short_name: "POSA",
+      theme_color: "#ffffff",
+      description:
+        "Finance application for POS agents to keep track of transactions",
+      icons: [
+        {
+          src: "/icon-64x64.png",
+          sizes: "64x64",
+          type: "image/png",
+        },
+        {
+          src: "/icon-144x144.png",
+          sizes: "144x144",
+          type: "image/png",
+        },
+        {
+          src: "/icon-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "/icon-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+      ],
+    },
+    workbox: {
+      navigateFallback: "/",
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    client: {
+      installPrompt: true,
+    },
+    devOptions: {
+      enabled: true,
+      type: "module",
+    },
+  },
 
   imports: {
     dirs: ["stores"],
