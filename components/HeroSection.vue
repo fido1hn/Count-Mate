@@ -4,7 +4,7 @@
       <h1
         class="px-3 text-center text-3xl font-semibold sm:text-3xl md:text-4xl lg:text-5xl"
       >
-        Beautiful POS transactions analytics
+        Beautiful POS Transactions Tracking & Analytics
       </h1>
       <p
         class="mt-4 w-3/4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 md:text-base"
