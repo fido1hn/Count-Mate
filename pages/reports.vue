@@ -81,7 +81,7 @@
       <div class="flex flex-col gap-y-3 pr-24">
         <div class="">
           <p class="mb-1.5 text-xs text-gray-600 dark:text-gray-400">
-            Total Members
+            Total Amount
           </p>
           <div class="flex items-start">
             <p class="mr-1 text-2xl font-medium">4,862</p>
@@ -97,7 +97,7 @@
 
         <div class="">
           <p class="mb-1.5 text-xs text-gray-600 dark:text-gray-400">
-            Paid Members
+            Total Transactions
           </p>
           <div class="flex items-start">
             <p class="mr-1 text-2xl font-medium">2,672</p>
@@ -113,7 +113,7 @@
 
         <div class="">
           <p class="mb-1.5 text-xs text-gray-600 dark:text-gray-400">
-            Email open rate
+            Total Average Order
           </p>
           <div class="flex items-start">
             <p class="mr-1 text-2xl font-medium">82%</p>
