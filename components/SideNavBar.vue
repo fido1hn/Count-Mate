@@ -98,6 +98,7 @@ const links = [
     {
       label: "Support",
       icon: "i-heroicons-lifebuoy",
+      to: "/support",
     },
     {
       label: "Settings",
