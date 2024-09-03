@@ -36,6 +36,17 @@ useHead({
     },
   ],
 });
+
+useSeoMeta({
+  title: "Finance Tracker - POS Tracking & Accounting",
+  ogTitle: "POS Tracking & Accounting",
+  description:
+    "POS transaction tracking & accounting application, for POS agents to keep track of transactions on the go, get financial reports and chat with A.I.",
+  ogDescription:
+    "POS transaction tracking & accounting application, for POS agents to keep track of transactions on the go, get financial reports and chat with A.I.",
+  ogImage: "/icon.png",
+  twitterCard: "/icon.png",
+});
 </script>
 
 <style>
