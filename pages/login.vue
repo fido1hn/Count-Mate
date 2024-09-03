@@ -195,7 +195,11 @@ const rememberUser = ref(false);
 const pending = ref(false);
 const { toastError, toastSuccess } = useAppToast();
 const supabase = useSupabaseClient();
-useRedirectIfAuthenticated("/dashboard");
+
+const route = useRoute();
+const redirectUrl = (route.query.redirect as string) || "/dashboard";
+
+useRedirectIfAuthenticated(redirectUrl);
 
 async function onSubmitSignup() {
   pending.value = true;

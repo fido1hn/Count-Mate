@@ -76,7 +76,7 @@
         Can't find the answer you're looking for? Please chat our friendly team.
       </p>
 
-      <UButton label="Get in touch" size="md" />
+      <UButton label="Get in touch" size="md" to="/login?redirect=/support" />
     </div>
   </section>
 </template>
