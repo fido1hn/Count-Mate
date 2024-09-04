@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-14 md:py-20">
-    <div class="mx-auto max-w-xl">
+    <div class="mx-auto max-w-2xl px-5">
       <h2 class="mb-2 text-2xl font-semibold md:text-3xl">Get in touch</h2>
       <p
         class="mb-6 text-base font-normal text-gray-600 dark:text-gray-400 md:mb-10 md:text-lg"
@@ -9,7 +9,11 @@
       </p>
 
       <!-- Form -->
-      <UForm :schema="GetInTouchSchema" :state="state" @submit="onSubmit">
+      <UForm
+        :schema="GetInTouchSchema"
+        :state="state"
+        @submit.prevent="onSubmit"
+      >
         <div class="mb-4 flex flex-col gap-4 md:flex-row">
           <UFormGroup
             required
