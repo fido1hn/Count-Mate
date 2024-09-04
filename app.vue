@@ -1,5 +1,5 @@
 <template>
-  <VitePwaManifest />
+  <!-- <VitePwaManifest /> -->
   <NuxtLayout>
     <NuxtPage />
     <UNotifications />
