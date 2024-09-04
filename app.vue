@@ -46,7 +46,8 @@ useSeoMeta({
   ogDescription:
     "POS transaction tracking & accounting application, for POS agents to keep track of transactions on the go, get financial reports and chat with A.I.",
   ogImage: "/icon.png",
-  twitterCard: "/icon.png",
+  twitterCard: "summary_large_image",
+  twitterImage: "/icon-192x192.png",
 });
 </script>
 

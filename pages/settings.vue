@@ -102,7 +102,7 @@
               name="email"
               class="mb-6"
             >
-              <UInput icon="i-heroicons-envelope" v-model="state.email" />
+              <UInput icon="i-heroicons-envelope" v-model.trim="state.email" />
             </UFormGroup>
 
             <div class="flex flex-col gap-4 md:flex-row">
@@ -193,10 +193,14 @@ const pending = ref(false);
 const avatarPreviewUrl = ref<string | null>(null);
 const uploadedAvatar = ref<File | null>(null);
 
-const state = ref({
+const state = ref<{
+  firstName: string;
+  lastName: string;
+  email: string | undefined;
+}>({
   firstName: userFullName.value.split(" ")[0],
   lastName: userFullName.value.split(" ")[1],
-  email: userEmailAddress.value,
+  email: userEmailAddress.value?.toString(),
 });
 
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -221,11 +225,11 @@ const save = async () => {
       data: {
         full_name: state.value.firstName + " " + state.value.lastName,
       },
-      email: userEmailAddress.value,
+      email: userEmailAddress.value || undefined,
     };
 
     if (state.value.email !== userEmailAddress.value) {
-      data.email = state.value.email;
+      data.email = state.value.email || undefined;
     }
 
     if (uploadedAvatar.value) {
