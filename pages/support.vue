@@ -51,6 +51,7 @@
 
 <script lang="ts" setup>
 import { GetInTouchSchema } from "~/schemas/GetInTouchSchema";
+const { toastSuccess, toastError } = useAppToast();
 const state = reactive({
   firstName: "",
   lastName: "",
@@ -58,8 +59,35 @@ const state = reactive({
   message: "",
 });
 
-function onSubmit() {
-  console.log("submit");
+async function onSubmit() {
+  try {
+    const { data, error } = await useFetch("/api/send-email", {
+      method: "POST",
+      body: state,
+    });
+
+    if (error.value) {
+      throw new Error("Failed to send email");
+    }
+
+    if (data.value?.success) {
+      toastSuccess({
+        title: "Success",
+        description: "Your message has been sent successfully!",
+      });
+      Object.keys(state).forEach(
+        (key) => (state[key as keyof typeof state] = ""),
+      );
+    } else {
+      throw new Error("Failed to send email");
+    }
+  } catch (error) {
+    console.error("Error sending email:", error);
+    toastError({
+      title: "Email send failed",
+      description: "Failed to send email. Please try again.",
+    });
+  }
 }
 </script>
 

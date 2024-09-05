@@ -50,6 +50,9 @@ importers:
       lucide-vue-next:
         specifier: ^0.438.0
         version: 0.438.0(vue@3.5.0(typescript@5.5.4))
+      nodemailer:
+        specifier: ^6.9.15
+        version: 6.9.15
       pinia:
         specifier: ^2.2.2
         version: 2.2.2(typescript@5.5.4)(vue@3.5.0(typescript@5.5.4))
@@ -135,6 +138,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.45.3
         version: 2.45.3
+      '@types/nodemailer':
+        specifier: ^6.4.15
+        version: 6.4.15
       '@vite-pwa/nuxt':
         specifier: ^0.10.3
         version: 0.10.3(magicast@0.3.4)(rollup@4.20.0)(vite@5.4.2(@types/node@22.1.0)(terser@5.31.5))(workbox-build@7.1.1)(workbox-window@7.1.0)
@@ -2095,6 +2101,9 @@ packages:
 
   '@types/node@22.1.0':
     resolution: {integrity: sha512-AOmuRF0R2/5j1knA3c6G3HOk523Ga+l+ZXltX8SF1+5oqcXijjfTd8fY3XRZqSihEu9XhtQnKYLmkFaoxgsJHw==}
+
+  '@types/nodemailer@6.4.15':
+    resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
 
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
@@ -4487,6 +4496,10 @@ packages:
 
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
+
+  nodemailer@6.9.15:
+    resolution: {integrity: sha512-AHf04ySLC6CIfuRtRiEYtGEXgRfa6INgWGluDhnxTZhHSKvrBu7lc1VVchQ0d8nPc4cFaZoPq8vkyNoZr0TpGQ==}
+    engines: {node: '>=6.0.0'}
 
   nopt@5.0.0:
     resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}
@@ -8550,6 +8563,10 @@ snapshots:
     dependencies:
       undici-types: 6.13.0
 
+  '@types/nodemailer@6.4.15':
+    dependencies:
+      '@types/node': 22.1.0
+
   '@types/parse-json@4.0.2': {}
 
   '@types/pbf@3.0.5': {}
@@ -11374,6 +11391,8 @@ snapshots:
   node-gyp-build@4.8.1: {}
 
   node-releases@2.0.18: {}
+
+  nodemailer@6.9.15: {}
 
   nopt@5.0.0:
     dependencies:
