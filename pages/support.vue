@@ -13,6 +13,7 @@
         :schema="GetInTouchSchema"
         :state="state"
         @submit.prevent="onSubmit"
+        v-if="!emailSent"
       >
         <div class="mb-4 flex flex-col gap-4 md:flex-row">
           <UFormGroup
@@ -45,6 +46,10 @@
 
         <UButton block size="md" type="submit">Send message</UButton>
       </UForm>
+
+      <p class="text-lg font-semibold" v-else>
+        You'll hear from us shortly 🙂🚨
+      </p>
     </div>
   </UContainer>
 </template>
@@ -52,6 +57,9 @@
 <script lang="ts" setup>
 import { GetInTouchSchema } from "~/schemas/GetInTouchSchema";
 const { toastSuccess, toastError } = useAppToast();
+
+const emailSent = ref(false);
+
 const state = reactive({
   firstName: "",
   lastName: "",
@@ -78,11 +86,11 @@ async function onSubmit() {
       Object.keys(state).forEach(
         (key) => (state[key as keyof typeof state] = ""),
       );
+      emailSent.value = true;
     } else {
       throw new Error("Failed to send email");
     }
   } catch (error) {
-    console.error("Error sending email:", error);
     toastError({
       title: "Email send failed",
       description: "Failed to send email. Please try again.",
@@ -90,5 +98,3 @@ async function onSubmit() {
   }
 }
 </script>
-
-<style></style>
