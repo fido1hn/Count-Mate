@@ -47,7 +47,7 @@
         <UButton block size="md" type="submit">Send message</UButton>
       </UForm>
 
-      <p class="text-lg font-semibold" v-else>
+      <p class="text-lg font-semibold text-gray-700 dark:text-gray-400" v-else>
         You'll hear from us shortly 🙂🚨
       </p>
     </div>
