@@ -11,6 +11,7 @@ export function transformTransaction(
 ): UITransaction {
   const createdAt = new Date(transaction.created_at);
   return {
+    id: transaction.id,
     amount: transaction.amount,
     payment_method: transaction.payment_type,
     date: format(createdAt, "yyyy-MM-dd"),
@@ -22,6 +23,7 @@ type DBTransaction = {
   created_at: string;
   amount: number;
   payment_type: string;
+  id: number;
 };
 
 export type UITransaction = {
@@ -29,6 +31,7 @@ export type UITransaction = {
   time: string;
   payment_method: string;
   amount: number;
+  id: number;
 };
 
 export type TimePeriod = {

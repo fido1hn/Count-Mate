@@ -162,7 +162,7 @@
             @click="isOpen = true"
           />
         </div>
-        <TransactionTable />
+        <TransactionTable @deleted="refresh" />
       </div>
     </section>
   </div>

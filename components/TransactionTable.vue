@@ -1,7 +1,7 @@
 <template>
   <div class="py-5">
     <UTable
-      :loading="pending"
+      :loading="isLoading"
       :columns="columns"
       :rows="rows"
       :ui="{
@@ -54,7 +54,12 @@
 <script lang="ts" setup>
 import type { UITransaction } from "~/lib/utils";
 const transactionsStore = useTransactionsStore();
-const { transactions, pending } = storeToRefs(transactionsStore);
+const { transactions } = storeToRefs(transactionsStore);
+const { toastSuccess, toastError } = useAppToast();
+const supabase = useSupabaseClient();
+
+const emit = defineEmits(["deleted"]);
+const isLoading = ref(false);
 
 const originalColumns = [
   {
@@ -98,6 +103,7 @@ const actionItems = (row: UITransaction) => [
     {
       label: "Delete",
       icon: "i-heroicons-trash-20-solid",
+      click: () => deleteTransaction(row),
     },
   ],
 ];
@@ -166,4 +172,21 @@ const columns = computed(() => {
 
   return originalColumns;
 });
+
+const deleteTransaction = async (transaction: UITransaction) => {
+  isLoading.value = true;
+  try {
+    await supabase.from("transactions").delete().eq("id", transaction.id);
+    toastSuccess({
+      title: "Transaction Deleted",
+    });
+    emit("deleted");
+  } catch (error) {
+    toastError({
+      title: "Transaction was not deleted",
+    });
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>
