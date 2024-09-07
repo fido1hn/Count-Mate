@@ -95,11 +95,11 @@ const rows = computed(() => {
 
 const actionItems = (row: UITransaction) => [
   [
-    {
-      label: "Edit",
-      icon: "i-heroicons-pencil-square-20-solid",
-      click: () => console.log("Edit", row),
-    },
+    // {
+    //   label: "Edit",
+    //   icon: "i-heroicons-pencil-square-20-solid",
+    //   click: () => console.log("Edit", row),
+    // },
     {
       label: "Delete",
       icon: "i-heroicons-trash-20-solid",
