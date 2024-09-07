@@ -52,6 +52,9 @@ useSeoMeta({
 </script>
 
 <style>
+* {
+  touch-action: manipulation;
+}
 /* Set the font family for the entire site */
 body {
   font-family: "Inter";
