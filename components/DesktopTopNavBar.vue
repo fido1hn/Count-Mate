@@ -23,6 +23,10 @@
       }"
     />
 
+    <ClientOnly>
+      <ColorModeSelector class="mr-4" />
+    </ClientOnly>
+
     <div class="flex items-center justify-center gap-4" v-if="!isLoggedIn">
       <UButton
         to="/login"

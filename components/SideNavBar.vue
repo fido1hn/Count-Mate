@@ -1,12 +1,20 @@
 <template>
   <div class="h-dvh flex-col p-5">
-    <div class="mb-4 flex items-center gap-3">
-      <img
-        src="/public/icon.png"
-        alt="Untitled UI Logo"
-        class="ml-1.5 h-8 w-8"
-      />
-      <h2 class="text-lg font-semibold max-[1360px]:hidden">Finace Tracker</h2>
+    <div class="mb-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img
+          src="/public/icon.png"
+          alt="Untitled UI Logo"
+          class="ml-1.5 h-8 w-8"
+        />
+        <h2 class="text-lg font-semibold max-[1360px]:hidden">
+          Finace Tracker
+        </h2>
+      </div>
+
+      <ClientOnly>
+        <ColorModeSelector />
+      </ClientOnly>
     </div>
 
     <UInput
