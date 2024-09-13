@@ -44,7 +44,14 @@
           <UTextarea size="xl" v-model="state.message" />
         </UFormGroup>
 
-        <UButton block size="md" type="submit">Send message</UButton>
+        <UButton
+          :loading="isLoading"
+          :disabled="isLoading"
+          block
+          size="md"
+          type="submit"
+          >Send message</UButton
+        >
       </UForm>
 
       <p class="text-lg font-semibold text-gray-700 dark:text-gray-400" v-else>
@@ -58,6 +65,7 @@
 import { GetInTouchSchema } from "~/schemas/GetInTouchSchema";
 const { toastSuccess, toastError } = useAppToast();
 
+const isLoading = ref(false);
 const emailSent = ref(false);
 
 const state = reactive({
@@ -69,16 +77,13 @@ const state = reactive({
 
 async function onSubmit() {
   try {
-    const { data, error } = await useFetch("/api/send-email", {
+    isLoading.value = true;
+    const data = await $fetch("/api/send-email", {
       method: "POST",
       body: state,
     });
 
-    if (error.value) {
-      throw new Error("Failed to send email");
-    }
-
-    if (data.value?.success) {
+    if (data.success) {
       toastSuccess({
         title: "Success",
         description: "Your message has been sent successfully!",
@@ -95,6 +100,8 @@ async function onSubmit() {
       title: "Email send failed",
       description: "Failed to send email. Please try again.",
     });
+  } finally {
+    isLoading.value = false;
   }
 }
 </script>
