@@ -1,12 +1,25 @@
-# Finance Tracker, Nuxt, Nuxt UI, Supabase
+# POS Accounting, Nuxt, Nuxt UI, Supabase
 
-Finance tracker allows POS agents keep track of daily transactions on the go, and get finiancial reports.
+POSA: POS Accounting allows POS agents keep track of daily transactions on the go, get finiancial reports and chat with A.I about their finances.
 
 ## Technologies include
 
 Vue/Nuxt, Tailwind CSS, Supabase, Nuxt UI, Shadcn-Vue,
 
-## Setup
+## Backend Setup
+
+- Setup up a Supabase project
+  - Create a new project on Supabase
+- Configure environment variables
+  - Copy the .env.example file to .env and fill in all the variables
+- Setup authentication on Supabase
+  - Configure authentication providers in your Supabase project settings, Email & Google.
+- Run database migrations
+  - DB Migrations will be provided soon
+- Set up AI integrations
+  - Coming soon
+
+## Dev Setup
 
 Make sure to install the dependencies:
 
